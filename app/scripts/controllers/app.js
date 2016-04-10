@@ -1,25 +1,22 @@
 /**
  * Created by vjcspy on 09/04/2016.
  */
-app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', function ($scope, $ionicHistory, $ionicNavBarDelegate) {
+app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$ionicLoading', function ($scope, $ionicHistory, $ionicNavBarDelegate, $ionicLoading) {
   $scope.goBack = function () {
     $ionicHistory.goBack();
   };
   $scope.showBackButton = function () {
     $ionicNavBarDelegate.showBackButton(true);
   };
-  // Form data for the login modal
-  $scope.loginData = {};
-  $scope.isExpanded = false;
-  $scope.hasHeaderFabLeft = false;
-  $scope.hasHeaderFabRight = false;
 
-  var navIcons = document.getElementsByClassName('ion-navicon');
-  for (var i = 0; i < navIcons.length; i++) {
-    navIcons.addEventListener('click', function () {
-      this.classList.toggle('active');
+  $scope.showLoadingData = function () {
+    $ionicLoading.show({
+      template: 'Loading...'
     });
-  }
+  };
+  $scope.hideLoadingData = function () {
+    $ionicLoading.hide();
+  };
 
   ////////////////////////////////////////
   // Layout Methods
