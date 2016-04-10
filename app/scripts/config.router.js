@@ -25,8 +25,16 @@ app
           url: '/home',
           views: {
             'menuContent': {
-              templateUrl: 'views/app/home.html'
+              templateUrl: 'views/app/home.html',
+              controller: 'HomeCtrl'
             }
           }
-        })
+        }).state('app.order', {
+        url: '/Order',
+        views: {
+          'menuContent': {
+            templateUrl: 'views/app/order/create.html'
+          }
+        }
+      })
     }]);
