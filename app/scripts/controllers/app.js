@@ -2,6 +2,11 @@
  * Created by vjcspy on 09/04/2016.
  */
 app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$ionicLoading', function ($scope, $ionicHistory, $ionicNavBarDelegate, $ionicLoading) {
+  $scope.AppCtrl = {};
+  $scope.AppCtrl.data = {
+    iconLoading: 'android'
+  };
+
   $scope.goBack = function () {
     $ionicHistory.goBack();
   };
@@ -11,7 +16,7 @@ app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$
 
   $scope.showLoadingData = function () {
     $ionicLoading.show({
-      template: '<ion-spinner icon="android"></ion-spinner>'
+      template: '<ion-spinner icon="' + $scope.AppCtrl.data.iconLoading + '"></ion-spinner>'
     });
   };
   $scope.hideLoadingData = function () {

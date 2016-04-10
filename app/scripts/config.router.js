@@ -29,12 +29,23 @@ app
               controller: 'HomeCtrl'
             }
           }
-        }).state('app.order', {
-        url: '/Order',
-        views: {
-          'menuContent': {
-            templateUrl: 'views/app/order/create.html'
+        })
+        .state('app.order', {
+          url: '/Order',
+          views: {
+            'menuContent': {
+              templateUrl: 'views/app/order/create.html'
+            }
           }
-        }
-      })
+        })
+
+        .state('app.configuration', {
+          url: '/configuration',
+          views: {
+            'menuContent': {
+              templateUrl: 'views/app/system/configuration.html',
+              controller: 'ConfigurationCtrl'
+            }
+          }
+        })
     }]);
