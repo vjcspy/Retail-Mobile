@@ -11,7 +11,7 @@ app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$
 
   $scope.showLoadingData = function () {
     $ionicLoading.show({
-      template: 'Loading...'
+      template: '<ion-spinner icon="android"></ion-spinner>'
     });
   };
   $scope.hideLoadingData = function () {
