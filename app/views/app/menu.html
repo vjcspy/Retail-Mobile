@@ -1,0 +1,51 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <!--Phần Content của MENU. Ở trong này sẽ có 1 ui-view để khi thay đổi router thì sẽ add html vào-->
+  <ion-side-menu-content>
+
+    <!--ion-nav-bar:
+    - Điểm hay ho của cái này là nó nằm ngoài cái template sẽ được truyền vào(ui-view) khi url thay đổi mà lại có thể tự động update.
+    - Bắt buộc phải dùng với ion-nav-view (tất nhiên, vì có cái đó thì mới có sự thay đổi)
+    -->
+    <ion-nav-bar class="bar-stable" align-title="center">
+
+      <!--ion-nav-back-button:
+      - Để tạo mội nút back
+      - Lưu ý là nut back này chỉ hiện ra khi cái ion-nav-view không nằm trong ion-side-menus. Dễ hiểu là view đó nằm cấp 2 trở lên. Còn nếu nằm
+      trong menu thì sẽ hiện nút ion-nav-button ở dưới để nhấp vào show ra menu
+      -->
+      <ion-nav-back-button class="button-clear"
+                           ng-click="goBack()">
+        <i class="ion-arrow-left-c"></i> Back
+      </ion-nav-back-button>
+
+      <!--ion-nav-buttons:
+      - Use nav buttons to set the buttons on your ionNavBar from within an ionView
+      - Có thể tạo 2 button left hoặc right bằng cách thêm side
+      -->
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+      </ion-nav-buttons>
+
+    </ion-nav-bar>
+
+    <!--Content sẽ được add vào đây tương tự như ui-view-->
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <!--LEFT hoặc nếu thích thì mình có thể chọn right-->
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">Robo-Stock</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close ui-sref="app.home">
+          Home
+        </ion-item>
+        <ion-item menu-close ui-sref="app.filter">
+          Filter
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
