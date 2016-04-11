@@ -2,8 +2,8 @@
  * Created by vjcspy on 10/04/2016.
  */
 
-app.controller('ConfigurationCtrl', ['$scope', '$log', 'ionicMaterialMotion', '$timeout', '$izTranslate',
-  function ($scope, $log, ionicMaterialMotion, $timeout, $izTranslate) {
+app.controller('ConfigurationCtrl', ['$scope', '$log', 'ionicMaterialMotion', '$timeout', '$izTranslate', 'appConfigData',
+  function ($scope, $log, ionicMaterialMotion, $timeout, $izTranslate, appConfigData) {
 
     ionicMaterialMotion.pushDown({
       selector: '.push-down'
@@ -38,9 +38,12 @@ app.controller('ConfigurationCtrl', ['$scope', '$log', 'ionicMaterialMotion', '$
       $timeout(function () {
         $scope.$parent.hideLoadingData();
       }, 1000);
+
+      appConfigData.saveConfig('loading_type', $scope.$parent.AppCtrl.data.iconLoading);
     };
 
     $scope.changeLanguage = function (langKey) {
       $izTranslate.changeLanguage(langKey);
+      appConfigData.saveConfig('app_language', $scope.$parent.AppCtrl.data.language);
     };
   }]);

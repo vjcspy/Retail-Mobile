@@ -19,8 +19,8 @@ var izIndexedDB = angular.module('izIndexedDB', ['indexedDB'])
         db.createObjectStore('pullData', {keyPath: 'pull_data_id'});
       })
       .upgradeDatabase(4, function (event, db, tx) {
-        var objAppData = db.createObjectStore('retailAppData', {autoIncrement: true});
-        objAppData.createIndex('name', 'name', {unique: true});
-        objAppData.createIndex('value', 'value', {unique: false});
+        var objAppData = db.createObjectStore('retailAppData', {keyPath: 'retail_app_data_config_id'});
+        objAppData.createIndex('name_idx', 'name', {unique: false});
+        objAppData.createIndex('value_idx', 'value', {unique: false});
       });
   });
