@@ -10,8 +10,8 @@ app
       }
     ]
   )
-  .config(['$stateProvider', '$urlRouterProvider',
-    function ($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', 'MODULE_CONFIG',
+    function ($stateProvider, $urlRouterProvider, MODULE_CONFIG) {
       $urlRouterProvider
         .otherwise('/app/home');
       $stateProvider
@@ -23,6 +23,7 @@ app
         })
         .state('app.home', {
           url: '/home',
+          resolve: load(['scripts/controllers/app/home.js']),
           views: {
             'menuContent': {
               templateUrl: 'views/app/home.html',
@@ -47,5 +48,40 @@ app
               controller: 'ConfigurationCtrl'
             }
           }
-        })
+        });
+
+      function load(srcs, callback) {
+        return {
+          deps: ['$ocLazyLoad', '$q',
+            function ($ocLazyLoad, $q) {
+              var deferred = $q.defer();
+              var promise = false;
+              srcs = angular.isArray(srcs) ? srcs : srcs.split(/\s+/);
+              if (!promise) {
+                promise = deferred.promise;
+              }
+              angular.forEach(srcs, function (src) {
+                promise = promise.then(function () {
+                  var name;
+                  angular.forEach(MODULE_CONFIG, function (module) {
+                    if (module.name == src) {
+                      if (!module.module) {
+                        name = module.files;
+                      } else {
+                        name = module.name;
+                      }
+                    } else {
+                      name = src;
+                    }
+                  });
+                  return $ocLazyLoad.load(name);
+                });
+              });
+              deferred.resolve();
+              return callback ? promise.then(function () {
+                return callback();
+              }) : promise;
+            }]
+        }
+      }
     }]);

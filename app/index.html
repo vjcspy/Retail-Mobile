@@ -47,6 +47,7 @@
   <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
   <script src="bower_components/ngstorage/ngStorage.js"></script>
   <script src="bower_components/angular-indexedDB/angular-indexed-db.js"></script>
+  <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -63,10 +64,12 @@
   <script src="scripts/config.router.js"></script>
   <script src="scripts/config.iz-translate.js"></script>
   <script src="scripts/config.indexedDB.js"></script>
+  <script src="scripts/config.lazyload.js"></script>
   <!--controller-->
   <script src="scripts/controllers/app.js"></script>
-  <script src="scripts/controllers/app/home.js"></script>
   <script src="scripts/controllers/app/system/configuration.js"></script>
+  <!--directive-->
+  <script src="scripts/directives/lazyload.js"></script>
   <!-- endbuild -->
 </head>
 <body ng-app="xretailApp">

@@ -9,9 +9,23 @@ var app = angular.module('xretailApp',
     'ionic-material',
     'ngMaterial',
     'izTranslate',
-    'izIndexedDB'
+    'izIndexedDB',
+    'oc.lazyLoad'
   ])
-
+  .config(
+    ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
+      function ($controllerProvider, $compileProvider, $filterProvider, $provide) {
+        //TODO: register for layzy load
+        // lazy controller, directive and service
+        app.controller = $controllerProvider.register;
+        app.directive = $compileProvider.directive;
+        app.filter = $filterProvider.register;
+        app.factory = $provide.factory;
+        app.service = $provide.service;
+        app.constant = $provide.constant;
+        app.value = $provide.value;
+      }
+    ])
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
