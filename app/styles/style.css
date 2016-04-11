@@ -7,3 +7,18 @@
   height: 50px;
 }
 
+/*CFLOADINGBAR*/
+#loading-bar .bar {
+  background: brown !important;
+  height: 2px !important;
+}
+
+#loading-bar-spinner {
+  top: 48% !important;
+  left: 45% !important;
+}
+
+#loading-bar-spinner .spinner-icon {
+  width: 35px !important;
+  height: 35px !important;
+}

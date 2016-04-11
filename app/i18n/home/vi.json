@@ -7,5 +7,8 @@
   "ANOTHER_DATA": "Dữ liệu khác",
   "HEAD_DOWNLOAD_OFFLINE_DATA": "Tải dữ liệu cần thiết cho việc sử dụng Offline.",
   "CONTENT_DOWNLOAD_OFFLINE_DATA": "Bạn có thể làm mới dữ liệu bằng cách nhấn vào nút reload một cách thủ công.",
-  "CLEAR_ALL_DATA_INDEXEDDB": "Xóa toàn bộ dữ liệu"
+  "CLEAR_ALL_DATA_INDEXEDDB": "Xóa toàn bộ dữ liệu",
+  "DELETE_DATABASE_SUCCESS": "Xóa dữ liệu thành công",
+  "DELETE_ERROR": "Không thể xóa dữ liệu",
+  "DELETE_BLOCK": "Không thể xóa dữ liệu do có tiến trình đang sử dụng. Xin hãy thoát ứng dụng và thử lại."
 }

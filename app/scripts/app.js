@@ -6,11 +6,15 @@
 var app = angular.module('xretailApp',
   [
     'ionic',
+    // 'ngTouch',
     'ionic-material',
     'ngMaterial',
     'izTranslate',
     'izIndexedDB',
-    'oc.lazyLoad'
+    'oc.lazyLoad',
+    'ngAnimate',
+    'toastr',
+    'angular-loading-bar'
   ])
   .config(
     ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
@@ -26,6 +30,9 @@ var app = angular.module('xretailApp',
         app.value = $provide.value;
       }
     ])
+  .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
+  }])
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {

@@ -1,7 +1,7 @@
 /**
  * Created by vjcspy on 11/04/2016.
  */
-var indexedDB = angular.module('izIndexedDB', ['indexedDB'])
+var izIndexedDB = angular.module('izIndexedDB', ['indexedDB'])
   .config(function ($indexedDBProvider) {
     $indexedDBProvider
       .connection('izIndexedDB')
