@@ -6,5 +6,6 @@
   "SALES_RULE_DATA": "Sales Rule data",
   "ANOTHER_DATA": "Another data",
   "HEAD_DOWNLOAD_OFFLINE_DATA": "Download Data Offline Mode.",
-  "CONTENT_DOWNLOAD_OFFLINE_DATA": "You can click reload button for update new data manually."
+  "CONTENT_DOWNLOAD_OFFLINE_DATA": "You can click reload button for update new data manually.",
+  "CLEAR_ALL_DATA_INDEXEDDB": "Clear all app data"
 }

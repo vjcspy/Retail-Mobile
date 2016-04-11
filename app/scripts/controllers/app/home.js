@@ -24,6 +24,19 @@ app.controller('HomeCtrl',
     $scope.HomeCtrl.model = {};
 
     /**/
+    $scope.clearDataIndexedDB = function () {
+      var req = indexedDB.deleteDatabase('izIndexedDB');
+      req.onsuccess = function () {
+        console.log("Deleted database successfully");
+      };
+      req.onerror = function () {
+        console.log("Couldn't delete database");
+      };
+      req.onblocked = function () {
+        console.log("Couldn't delete database due to the operation being blocked");
+      };
+    };
+
     $scope.reloadProduct = function () {
       $indexedDB.openStore('people', function (store) {
         store.insert({"name": "John " + lodash.random(0, 100), "age": 57}).then(function (res) {

@@ -13,7 +13,7 @@
           <md-progress-linear md-mode="determinate" value="{{HomeCtrl.model.percentProduct}}"></md-progress-linear>
         </div>
         <button class="button button-positive" ng-click="reloadProduct()">
-          <i class="icon ion-ios-refresh-outline"></i>
+          <i class="icon ion-ios-loop-strong"></i>
         </button>
       </div>
     </div>
@@ -24,7 +24,7 @@
           <md-progress-linear md-mode="determinate" value="{{20}}"></md-progress-linear>
         </div>
         <button class="button button-positive">
-          <i class="icon ion-ios-refresh-outline"></i>
+          <i class="icon ion-ios-loop-strong"></i>
         </button>
       </div>
     </div>
@@ -35,7 +35,7 @@
           <md-progress-linear md-mode="determinate" value="{{20}}"></md-progress-linear>
         </div>
         <button class="button button-positive">
-          <i class="icon ion-ios-refresh-outline"></i>
+          <i class="icon ion-ios-loop-strong"></i>
         </button>
       </div>
     </div>
@@ -46,7 +46,15 @@
           <md-progress-linear md-mode="determinate" value="{{20}}"></md-progress-linear>
         </div>
         <button class="button button-positive">
-          <i class="icon ion-ios-refresh-outline"></i>
+          <i class="icon ion-ios-loop-strong"></i>
+        </button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-text-wrap item-button-right">
+        <span style="font-size: larger">{{ 'CLEAR_ALL_DATA_INDEXEDDB' | translate }}</span>
+        <button class="button button-assertive" ng-click="clearDataIndexedDB()">
+          <i class="icon ion-ios-minus"></i>
         </button>
       </div>
     </div>
