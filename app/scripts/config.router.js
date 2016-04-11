@@ -1,6 +1,7 @@
 /**
  * Created by vjcspy on 09/04/2016.
  */
+'use strict';
 app
   .run(
     ['$rootScope', '$state', '$stateParams',
@@ -23,7 +24,7 @@ app
         })
         .state('app.home', {
           url: '/home',
-          resolve: load(['scripts/controllers/app/home.js']),
+          resolve: load(['scripts/controllers/app/home.js', 'scripts/services/home/pull.js']),
           views: {
             'menuContent': {
               templateUrl: 'views/app/home.html',

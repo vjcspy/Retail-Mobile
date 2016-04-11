@@ -1,6 +1,7 @@
 /**
  * Created by vjcspy on 11/04/2016.
  */
+'use strict';
 app.constant('MODULE_CONFIG', [
     {
       name: 'flow',
