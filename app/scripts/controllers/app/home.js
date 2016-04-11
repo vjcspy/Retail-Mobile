@@ -18,4 +18,7 @@ app.controller('HomeCtrl', function ($scope, $stateParams, $timeout, ionicMateri
     selector: '.animate-fade-slide-in .item'
   });
 
+  
+  /**/
+
 });

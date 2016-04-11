@@ -1,4 +1,10 @@
 {
   "LOADING_TYPE": "Icon loading",
-  "LANGUAGE": "Ngôn ngữ"
+  "LANGUAGE": "Ngôn ngữ",
+  "PRODUCT_DATA": "Dữ liệu sản phẩm",
+  "CUSTOMER_DATA": "Dữ liệu khách hàng",
+  "SALES_RULE_DATA": "Dữ liệu khuyến mại",
+  "ANOTHER_DATA": "Dữ liệu khác",
+  "HEAD_DOWNLOAD_OFFLINE_DATA": "Tải dữ liệu cần thiết cho việc sử dụng Offline.",
+  "CONTENT_DOWNLOAD_OFFLINE_DATA": "Bạn có thể làm mới dữ liệu bằng cách nhấn vào nút reload một cách thủ công."
 }

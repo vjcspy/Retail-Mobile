@@ -1,4 +1,10 @@
 {
   "LOADING_TYPE": "Loading icon",
-  "LANGUAGE": "Language"
+  "LANGUAGE": "Language",
+  "PRODUCT_DATA": "Product data",
+  "CUSTOMER_DATA": "Customer data",
+  "SALES_RULE_DATA": "Sales Rule data",
+  "ANOTHER_DATA": "Another data",
+  "HEAD_DOWNLOAD_OFFLINE_DATA": "Download Data Offline Mode.",
+  "CONTENT_DOWNLOAD_OFFLINE_DATA": "You can click reload button for update new data manually."
 }

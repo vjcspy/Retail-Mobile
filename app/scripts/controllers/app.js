@@ -1,12 +1,18 @@
 /**
  * Created by vjcspy on 09/04/2016.
  */
-app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$ionicLoading', '$izTranslate',
-  function ($scope, $ionicHistory, $ionicNavBarDelegate, $ionicLoading, $izTranslate) {
+app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$ionicLoading', '$izTranslate', '$translate',
+  function ($scope, $ionicHistory, $ionicNavBarDelegate, $ionicLoading, $izTranslate, $translate) {
     $scope.AppCtrl = {};
+
+    // get current language, if it save before
+    var currentLanguage = $translate.use();
+    if (!currentLanguage)
+      currentLanguage = 'en';
+
     $scope.AppCtrl.data = {
       iconLoading: 'android',
-      language: 'en'
+      language: currentLanguage
     };
 
     $scope.goBack = function () {
@@ -19,7 +25,7 @@ app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$
     /*iz-translate*/
     $izTranslate.addModules('home');
 
-    
+
     /*Loading */
     $scope.showLoadingData = function () {
       $ionicLoading.show({
