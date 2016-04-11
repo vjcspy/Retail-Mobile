@@ -1,37 +1,15 @@
 <ion-view view-title="Configuration">
-  <ion-content class="animate-fade-slide-in">
-    <div class="card">
-      <label class="item item-input item-select">
-        <div class="input-label">
-          {{'LOADING_TYPE' | translate}}
-        </div>
-        <select ng-change="changeLoadingType()"
-                ng-model="$parent.AppCtrl.data.iconLoading">
-          <option ng-selected="option.value == $parent.AppCtrl.data.iconLoading" ng-repeat="option in ConfigurationCtrl.data.loadingType"
-                  value="{{option.value}}">{{option.label}}
-          </option>
-        </select>
-      </label>
+  <ion-pane>
+    <ion-nav-view name="contentConfig"></ion-nav-view>
+  </ion-pane>
+  <div class="bar bar-footer bar-balanced">
+    <div class="tabs tabs-stable">
+      <a class="tab-item" ui-sref="app.configuration.general"> General </a>
+      <a class="tab-item" ui-sref="app.configuration.shop"> Shop </a>
+      <a class="tab-item" ui-sref="app.configuration.advance"> Advance </a>
     </div>
-    <div class="card">
-      <label class="item item-input item-select">
-        <div class="input-label">
-          {{'LANGUAGE' | translate}}
-        </div>
-        <select ng-change="changeLanguage()"
-                ng-model="$parent.AppCtrl.data.language">
-          <option ng-selected="option.value == $parent.AppCtrl.data.iconLoading" ng-repeat="option in ConfigurationCtrl.data.languages"
-                  value="{{option.value}}">{{option.label}}
-          </option>
-        </select>
-      </label>
-    </div>
-  </ion-content>
-  <ion-footer-bar>
-    <div class="tabs tabs-dark">
-      <a class="tab-item"> Generate </a>
-      <a class="tab-item"> Favorites </a>
-      <a class="tab-item"> Settings </a>
-    </div>
-  </ion-footer-bar>
-</ion-view>
+  </div>
+  <!--<ion-content>
+
+  </ion-content>-->
+

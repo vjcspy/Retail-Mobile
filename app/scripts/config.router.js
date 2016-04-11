@@ -43,6 +43,7 @@ app
 
         .state('app.configuration', {
           url: '/configuration',
+          abstract: true,
           views: {
             'menuContent': {
               templateUrl: 'views/app/system/configuration.html',
@@ -52,20 +53,24 @@ app
         })
         .state('app.configuration.general', {
           url: '/general',
+          resolve: load('scripts/controllers/app/system/tabs/general.js'),
           views: {
-            'configTab': {templateUrl: 'views/app/system/tabs/general.html'}
+            'contentConfig': {
+              templateUrl: 'views/app/system/tabs/general.html',
+              controller: 'GeneralCtrl'
+            }
           }
         })
         .state('app.configuration.shop', {
           url: '/shop',
           views: {
-            'configTab': {templateUrl: 'views/app/system/tabs/shop.html'}
+            'contentConfig': {templateUrl: 'views/app/system/tabs/shop.html'}
           }
         })
-        .state('app.configuration.advanced', {
-          url: '/advanced',
+        .state('app.configuration.advance', {
+          url: '/advance',
           views: {
-            'configTab': {templateUrl: 'views/app/system/tabs/advanced.html'}
+            'contentConfig': {templateUrl: 'views/app/system/tabs/advanced.html'}
           }
         });
 

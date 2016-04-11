@@ -10,6 +10,8 @@ app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$
     if (!$scope.AppCtrl.data.language)
       appConfigData.getConfig('app_language').then(function (o) {
         $scope.AppCtrl.data.language = o;
+        if (!!o)
+          $izTranslate.changeLanguage(o);
       });
     appConfigData.getConfig('loading_type').then(function (o) {
       $scope.AppCtrl.data.iconLoading = o;
