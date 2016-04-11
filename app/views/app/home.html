@@ -10,9 +10,9 @@
       <div class="item item-text-wrap item-button-right">
         <span style="font-size: larger">{{ 'PRODUCT_DATA' | translate }}</span>
         <div style="padding-top: 25px;width: 120%">
-          <md-progress-linear md-mode="determinate" value="{{20}}"></md-progress-linear>
+          <md-progress-linear md-mode="determinate" value="{{HomeCtrl.model.percentProduct}}"></md-progress-linear>
         </div>
-        <button class="button button-positive">
+        <button class="button button-positive" ng-click="reloadProduct()">
           <i class="icon ion-ios-refresh-outline"></i>
         </button>
       </div>
