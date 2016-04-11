@@ -4,22 +4,24 @@
 app.controller('HomeCtrl',
   ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$indexedDB', '$log', 'lodash', 'toastr', '$translate', 'cfpLoadingBar', '$timeout', 'pullService',
     function ($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $indexedDB, $log, lodash, toastr, $translate, cfpLoadingBar, $timeout, pullService) {
-      $scope.$parent.showHeader();
-      $scope.$parent.clearFabs();
-      $scope.isExpanded = true;
-      $scope.$parent.setExpanded(true);
-      $scope.$parent.setHeaderFab(false);
+      var startAnimate = function () {
+        $scope.$parent.showHeader();
+        $scope.$parent.clearFabs();
+        $scope.isExpanded = true;
+        $scope.$parent.setExpanded(true);
+        $scope.$parent.setHeaderFab(false);
 
-      // Activate ink for controller
-      ionicMaterialInk.displayEffect();
+        // Activate ink for controller
+        ionicMaterialInk.displayEffect();
 
-      ionicMaterialMotion.pushDown({
-        selector: '.push-down'
-      });
-      ionicMaterialMotion.fadeSlideInRight({
-        selector: '.animate-fade-slide-in .item'
-      });
-
+        ionicMaterialMotion.pushDown({
+          selector: '.push-down'
+        });
+        ionicMaterialMotion.fadeSlideInRight({
+          selector: '.animate-fade-slide-in .item'
+        });
+      };
+      startAnimate();
       $scope.HomeCtrl = {};
       $scope.HomeCtrl.data = {};
       $scope.HomeCtrl.model = {};

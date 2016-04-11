@@ -10,5 +10,8 @@
   "CLEAR_ALL_DATA_INDEXEDDB": "Clear all app data",
   "DELETE_DATABASE_SUCCESS": "Deleted database successfully",
   "DELETE_ERROR": "Couldn't delete database",
-  "DELETE_BLOCK": "Couldn't delete database due to the operation being blocked"
+  "DELETE_BLOCK": "Couldn't delete database due to the operation being blocked",
+  "CONFIG_TILE_GENERAL": "General",
+  "CONFIG_TILE_SHOP": "Shop",
+  "CONFIG_TILE_ADVANCE": "Advance"
 }

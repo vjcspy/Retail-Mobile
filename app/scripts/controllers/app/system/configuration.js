@@ -2,8 +2,8 @@
  * Created by vjcspy on 10/04/2016.
  */
 
-app.controller('ConfigurationCtrl', ['$scope', '$log', 'ionicMaterialMotion', '$timeout', '$izTranslate', 'appConfigData',
-  function ($scope, $log, ionicMaterialMotion, $timeout, $izTranslate, appConfigData) {
+app.controller('ConfigurationCtrl', ['$scope', '$log', 'ionicMaterialMotion', '$timeout', '$izTranslate', 'appConfigData', '$translate',
+  function ($scope, $log, ionicMaterialMotion, $timeout, $izTranslate, appConfigData, $translate) {
 
     ionicMaterialMotion.pushDown({
       selector: '.push-down'
@@ -31,6 +31,10 @@ app.controller('ConfigurationCtrl', ['$scope', '$log', 'ionicMaterialMotion', '$
       ],
       languages: $izTranslate.getLanguagesSupport()
     };
+
+    $translate('CONFIG_TILE_GENERAL').then(function (t) {
+      $scope.ConfigurationCtrl.data.title = t;
+    });
 
 
     $scope.changeLoadingType = function () {

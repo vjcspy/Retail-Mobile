@@ -49,6 +49,24 @@ app
               controller: 'ConfigurationCtrl'
             }
           }
+        })
+        .state('app.configuration.general', {
+          url: '/general',
+          views: {
+            'configTab': {templateUrl: 'views/app/system/tabs/general.html'}
+          }
+        })
+        .state('app.configuration.shop', {
+          url: '/shop',
+          views: {
+            'configTab': {templateUrl: 'views/app/system/tabs/shop.html'}
+          }
+        })
+        .state('app.configuration.advanced', {
+          url: '/advanced',
+          views: {
+            'configTab': {templateUrl: 'views/app/system/tabs/advanced.html'}
+          }
         });
 
       function load(srcs, callback) {

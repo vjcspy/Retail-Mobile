@@ -1,19 +1,19 @@
 /**
  * Created by vjcspy on 09/04/2016.
  */
-app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$ionicLoading', '$izTranslate', '$translate',
-  function ($scope, $ionicHistory, $ionicNavBarDelegate, $ionicLoading, $izTranslate, $translate) {
+app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$ionicLoading', '$izTranslate', '$translate', 'appConfigData',
+  function ($scope, $ionicHistory, $ionicNavBarDelegate, $ionicLoading, $izTranslate, $translate, appConfigData) {
     $scope.AppCtrl = {};
-
+    $scope.AppCtrl.data = {};
     // get current language, if it save before
-    var currentLanguage = $translate.use();
-    if (!currentLanguage)
-      currentLanguage = 'en';
-
-    $scope.AppCtrl.data = {
-      iconLoading: 'android',
-      language: currentLanguage
-    };
+    $scope.AppCtrl.data.language = $translate.use();
+    if (!$scope.AppCtrl.data.language)
+      appConfigData.getConfig('app_language').then(function (o) {
+        $scope.AppCtrl.data.language = o;
+      });
+    appConfigData.getConfig('loading_type').then(function (o) {
+      $scope.AppCtrl.data.iconLoading = o;
+    });
 
     $scope.goBack = function () {
       $ionicHistory.goBack();
