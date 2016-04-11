@@ -7,7 +7,8 @@ var app = angular.module('xretailApp',
   [
     'ionic',
     'ionic-material',
-    'ngMaterial'
+    'ngMaterial',
+    'izTranslate'
   ])
 
   .run(function ($ionicPlatform) {
