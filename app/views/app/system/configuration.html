@@ -6,11 +6,22 @@
     <div class="list">
       <label class="item item-input item-select">
         <div class="input-label">
-          Loading Type
+          {{ 'LOADING_TYPE' | translate }}
         </div>
         <select ng-change="changeLoadingType()"
                 ng-model="$parent.AppCtrl.data.iconLoading">
           <option ng-selected="option.value == $parent.AppCtrl.data.iconLoading" ng-repeat="option in ConfigurationCtrl.data.loadingType"
+                  value="{{option.value}}">{{option.label}}
+          </option>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          {{ 'LANGUAGE' | translate }}
+        </div>
+        <select ng-change="changeLanguage($parent.AppCtrl.data.language)"
+                ng-model="$parent.AppCtrl.data.language">
+          <option ng-selected="option.value == $parent.AppCtrl.data.language" ng-repeat="option in ConfigurationCtrl.data.languages"
                   value="{{option.value}}">{{option.label}}
           </option>
         </select>
