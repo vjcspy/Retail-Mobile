@@ -1,12 +1,9 @@
 <ion-view view-title="Configuration">
   <ion-content class="animate-fade-slide-in">
-    <button class="button button-full button-stable">
-      Generate
-    </button>
-    <div class="list">
+    <div class="card">
       <label class="item item-input item-select">
         <div class="input-label">
-          Loading Type
+          {{'LOADING_TYPE' | translate}}
         </div>
         <select ng-change="changeLoadingType()"
                 ng-model="$parent.AppCtrl.data.iconLoading">
@@ -15,9 +12,11 @@
           </option>
         </select>
       </label>
+    </div>
+    <div class="card">
       <label class="item item-input item-select">
         <div class="input-label">
-          Loading Type
+          {{'LANGUAGE' | translate}}
         </div>
         <select ng-change="changeLanguage()"
                 ng-model="$parent.AppCtrl.data.language">
