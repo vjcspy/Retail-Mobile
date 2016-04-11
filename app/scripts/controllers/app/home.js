@@ -2,8 +2,8 @@
  * Created by vjcspy on 10/04/2016.
  */
 app.controller('HomeCtrl',
-  ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$indexedDB', '$log', 'lodash', 'toastr', '$translate', 'cfpLoadingBar', '$timeout',
-    function ($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $indexedDB, $log, lodash, toastr, $translate, cfpLoadingBar, $timeout) {
+  ['$scope', '$stateParams', '$timeout', 'ionicMaterialInk', 'ionicMaterialMotion', '$indexedDB', '$log', 'lodash', 'toastr', '$translate', 'cfpLoadingBar', '$timeout', 'pullService',
+    function ($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion, $indexedDB, $log, lodash, toastr, $translate, cfpLoadingBar, $timeout, pullService) {
       $scope.$parent.showHeader();
       $scope.$parent.clearFabs();
       $scope.isExpanded = true;
@@ -24,26 +24,21 @@ app.controller('HomeCtrl',
       $scope.HomeCtrl.data = {};
       $scope.HomeCtrl.model = {};
 
-      /**/
+      /*Clear indexedDB*/
       $scope.clearDataIndexedDB = function () {
-        var req = indexedDB.deleteDatabase('izIndexedDB');
-        req.onsuccess = function () {
+        // var req1 = indexedDB.deleteDatabase('izIndexedDB');
+        var req = $indexedDB.deleteDatabase().then(function (res) {
           $translate('DELETE_DATABASE_SUCCESS').then(function (t) {
             toastr.success(t);
           });
-        };
-        req.onerror = function () {
-          $translate('DELETE_ERROR').then(function (t) {
-            toastr.error(t, 'Error');
-          });
-        };
-        req.onblocked = function () {
+        }, function (err) {
           $translate('DELETE_BLOCK').then(function (t) {
             toastr.error(t, 'Error');
           });
-        };
+        });
       };
 
+      //TODO: reload product
       $scope.reloadProduct = function () {
         // cfpLoadingBar.start();
         $indexedDB.openStore('people', function (store) {
@@ -62,4 +57,8 @@ app.controller('HomeCtrl',
         //   cfpLoadingBar.complete();
         // }, 2000);
       };
+      //TODO: reload customer
+      $scope.reloadCustomer = function () {
+        pullService.pullCustomer();
+      }
     }]);
