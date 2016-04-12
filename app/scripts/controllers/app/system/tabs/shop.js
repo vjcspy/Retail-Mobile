@@ -72,7 +72,10 @@ app
       };
       /*TODO: get data from config*/
       appConfigData.getConfig('website_url').then(function (data) {
-        $scope.ShopConfigCtrl.model.websiteUrl = data;
+        if (!!data)
+          $scope.ShopConfigCtrl.model.websiteUrl = data;
+        else
+          $scope.ShopConfigCtrl.model.websiteUrl = "http://mage1connector.xd.smartosc.com/index.php";
       });
       appConfigData.getConfig('website_pass').then(function (data) {
         $scope.ShopConfigCtrl.model.websitePass = data;
