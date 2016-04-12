@@ -24,7 +24,26 @@ app
         })
         .state('app.home', {
           url: '/home',
-          resolve: load(['scripts/controllers/app/home.js', 'scripts/services/home/pull.js']),
+          resolve: {
+            deps: load(['scripts/controllers/app/home.js', 'scripts/services/home/pull.js']).deps,
+            isLoadFull: function (pullService, $state, toastr) {
+              var isHasInfo = pullService.isHasInformationWebsite();
+              isHasInfo.then(function (ok) {
+                if (ok) {
+                  var isPullFullData = pullService.isPullFullData();
+                  isPullFullData.then(function (ok) {
+                    if (ok)
+                      console.log('PULL FULL');
+                    else
+                      console.log('PULL NOT FULL');
+                  })
+                } else {
+                  $state.go('app.configuration.shop');
+                  toastr.info('Phải có thông tin đăng nhập');
+                }
+              })
+            }
+          },
           views: {
             'menuContent': {
               templateUrl: 'views/app/home.html',
@@ -44,6 +63,7 @@ app
         .state('app.configuration', {
           url: '/configuration',
           abstract: true,
+          resolve: load('scripts/controllers/app/system/configuration.js'),
           views: {
             'menuContent': {
               templateUrl: 'views/app/system/configuration.html',
