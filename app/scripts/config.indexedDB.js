@@ -15,7 +15,8 @@ var izIndexedDB = angular.module('izIndexedDB', ['indexedDB'])
         db.createObjectStore('peoplePhones', {autoIncrement: true});
       })
       .upgradeDatabase(3, function (event, db, tx) {
-        db.createObjectStore('customer', {autoIncrement: true});
+        db.createObjectStore('customers', {keyPath: 'id'});
+        db.createObjectStore('products', {keyPath: 'id'});
         db.createObjectStore('pullData', {keyPath: 'pull_data_id'});
       })
       .upgradeDatabase(4, function (event, db, tx) {

@@ -1,8 +1,8 @@
 /**
  * Created by vjcspy on 09/04/2016.
  */
-app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$ionicLoading', '$izTranslate', '$translate', 'appConfigData',
-  function ($scope, $ionicHistory, $ionicNavBarDelegate, $ionicLoading, $izTranslate, $translate, appConfigData) {
+app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$ionicLoading', '$izTranslate', '$translate', 'appConfigData', '$state',
+  function ($scope, $ionicHistory, $ionicNavBarDelegate, $ionicLoading, $izTranslate, $translate, appConfigData, $state) {
     $scope.AppCtrl = {};
     $scope.AppCtrl.data = {};
     // get current language, if it save before
@@ -15,6 +15,7 @@ app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$
       $scope.AppCtrl.data.iconLoading = o;
     });
 
+    /*Nav-bar function*/
     $scope.goBack = function () {
       $ionicHistory.goBack();
     };
@@ -104,4 +105,10 @@ app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$
         fabs[0].remove();
       }
     };
+
+    /*direct to loading page when not have data*/
+    $scope.AppCtrl.data.pullFullData = false;
+    if ($scope.AppCtrl.data.pullFullData){
+      $state.go('app.home');
+    }
   }]);

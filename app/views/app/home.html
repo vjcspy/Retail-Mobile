@@ -8,7 +8,8 @@
     </div>
     <div class="card">
       <div class="item item-text-wrap item-button-right">
-        <span style="font-size: larger">{{ 'PRODUCT_DATA' | translate }}</span>
+        <span style="font-size: larger">{{ 'PRODUCT_DATA' | translate }}:
+          <span style="font-weight: lighter;font-size: smaller">{{HomeCtrl.model.percentProductDetail}}</span></span>
         <div style="padding-top: 25px;width: 120%">
           <md-progress-linear md-mode="determinate" value="{{HomeCtrl.model.percentProduct}}"></md-progress-linear>
         </div>
@@ -19,9 +20,11 @@
     </div>
     <div class="card">
       <div class="item item-text-wrap item-button-right">
-        <span style="font-size: larger">{{ 'CUSTOMER_DATA' | translate }}</span>
+        <span style="font-size: larger">{{ 'CUSTOMER_DATA' | translate }}
+          <span style="font-weight: lighter;font-size: smaller">{{HomeCtrl.model.percentCustomerDetail}}</span>
+        </span>
         <div style="padding-top: 25px;width: 120%">
-          <md-progress-linear md-mode="determinate" value="{{20}}"></md-progress-linear>
+          <md-progress-linear md-mode="determinate" value="{{HomeCtrl.model.percentCustomer}}"></md-progress-linear>
         </div>
         <button class="button button-positive" on-tap="reloadCustomer()">
           <i class="icon ion-ios-loop-strong"></i>
@@ -32,7 +35,7 @@
       <div class="item item-text-wrap item-button-right">
         <span style="font-size: larger">{{ 'SALES_RULE_DATA' | translate }}</span>
         <div style="padding-top: 25px;width: 120%">
-          <md-progress-linear md-mode="determinate" value="{{20}}"></md-progress-linear>
+          <md-progress-linear md-mode="determinate" value="{{HomeCtrl.model.percentSalesRule}}"></md-progress-linear>
         </div>
         <button class="button button-positive">
           <i class="icon ion-ios-loop-strong"></i>
@@ -43,9 +46,9 @@
       <div class="item item-text-wrap item-button-right">
         <span style="font-size: larger">{{ 'ANOTHER_DATA' | translate }}</span>
         <div style="padding-top: 25px;width: 120%">
-          <md-progress-linear md-mode="determinate" value="{{20}}"></md-progress-linear>
+          <md-progress-linear md-mode="determinate" value="{{HomeCtrl.model.percentAnotherData}}"></md-progress-linear>
         </div>
-        <button class="button button-positive">
+        <button class="button button-positive" on-tap="testGetData()">
           <i class="icon ion-ios-loop-strong"></i>
         </button>
       </div>
