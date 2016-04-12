@@ -13,5 +13,8 @@
   "DELETE_BLOCK": "Không thể xóa dữ liệu do có tiến trình đang sử dụng. Xin hãy thoát ứng dụng và thử lại.",
   "CONFIG_TILE_GENERAL": "Chung",
   "CONFIG_TILE_SHOP": "Cửa hàng",
-  "CONFIG_TILE_ADVANCE": "Nâng cao"
+  "CONFIG_TILE_ADVANCE": "Nâng cao",
+  "WEBSITE_URL": "Link Website",
+  "WEBSITE_PASS": "Mật khẩu",
+  "ERROR_REQUIRE": "Đây là trường bắt buộc"
 }

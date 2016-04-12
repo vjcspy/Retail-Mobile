@@ -35,5 +35,8 @@ app.controller('ConfigurationCtrl', ['$scope', '$log', 'ionicMaterialMotion', '$
     $translate('CONFIG_TILE_GENERAL').then(function (t) {
       $scope.ConfigurationCtrl.data.title = t;
     });
-    
+
+    $scope.changeConfig = function (configName, configValue) {
+      appConfigData.saveConfig(configName, configValue);
+    }
   }]);

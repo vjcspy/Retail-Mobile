@@ -6,13 +6,11 @@ app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$
     $scope.AppCtrl = {};
     $scope.AppCtrl.data = {};
     // get current language, if it save before
-    $scope.AppCtrl.data.language = $translate.use();
-    if (!$scope.AppCtrl.data.language)
-      appConfigData.getConfig('app_language').then(function (o) {
-        $scope.AppCtrl.data.language = o;
-        if (!!o)
-          $izTranslate.changeLanguage(o);
-      });
+    appConfigData.getConfig('app_language').then(function (o) {
+      $scope.AppCtrl.data.language = o;
+      if (!!o)
+        $izTranslate.changeLanguage(o);
+    });
     appConfigData.getConfig('loading_type').then(function (o) {
       $scope.AppCtrl.data.iconLoading = o;
     });

@@ -63,8 +63,12 @@ app
         })
         .state('app.configuration.shop', {
           url: '/shop',
+          resolve: load('scripts/controllers/app/system/tabs/shop.js'),
           views: {
-            'contentConfig': {templateUrl: 'views/app/system/tabs/shop.html'}
+            'contentConfig': {
+              templateUrl: 'views/app/system/tabs/shop.html',
+              controller: 'ShopConfigCtrl'
+            }
           }
         })
         .state('app.configuration.advance', {

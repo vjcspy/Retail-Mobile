@@ -13,5 +13,8 @@
   "DELETE_BLOCK": "Couldn't delete database due to the operation being blocked",
   "CONFIG_TILE_GENERAL": "General",
   "CONFIG_TILE_SHOP": "Shop",
-  "CONFIG_TILE_ADVANCE": "Advance"
+  "CONFIG_TILE_ADVANCE": "Advance",
+  "WEBSITE_URL": "Your Website Url",
+  "WEBSITE_PASS": "Your Password",
+  "ERROR_REQUIRE": "This is required."
 }
