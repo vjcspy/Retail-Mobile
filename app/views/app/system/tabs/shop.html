@@ -5,7 +5,7 @@
         <md-subheader class="md-no-sticky">Authentication</md-subheader>
         <md-list-item>
           <p> {{ 'WEBSITE_URL' | translate}} </p>
-          <md-input-container md-no-float class="md-block md-secondary" flex-gt-sm>
+          <md-input-container md-no-float class="md-block md-secondary">
             <input ng-change="changeConfig('website_url',ShopConfigCtrl.model.websiteUrl)" required name="websiteUrl"
                    ng-model="ShopConfigCtrl.model.websiteUrl">
             <div ng-messages="shopConfig.websiteUrl.$error">
@@ -15,7 +15,7 @@
         </md-list-item>
         <md-list-item>
           <p> {{ 'WEBSITE_PASS' | translate}} </p>
-          <md-input-container md-no-float class="md-block md-secondary" flex-gt-sm>
+          <md-input-container md-no-float class="md-block md-secondary">
             <input ng-change="changeConfig('website_pass',ShopConfigCtrl.model.websitePass)" type="password" required name="websitePass"
                    ng-model="ShopConfigCtrl.model.websitePass">
             <div ng-messages="shopConfig.websitePass.$error">
