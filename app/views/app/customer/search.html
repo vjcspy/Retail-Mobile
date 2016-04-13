@@ -1,14 +1,132 @@
 <ion-view view-title="Customers">
   <div class="row">
     <ion-content>
-      <div class="panel panel-info">
-      	  <div class="panel-heading">
-      			<h3 class="panel-title">Panel title</h3>
-      	  </div>
-      	  <div class="panel-body">
-      			Panel body ...
-      	  </div>
+      <div class="panel1 panel-default1">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 25px">
+          <ui-select ng-model="SearchCustomerCtrl.model.customer" theme="bootstrap" on-select="selectCustomer()">
+            <ui-select-match placeholder="Select or search a customer in the list...">{{$select.selected.first_name}} - {{$select.selected.last_name}}
+            </ui-select-match>
+            <ui-select-choices repeat="item in SearchCustomerCtrl.data.customers | filter: $select.search">
+              <div ng-bind-html="item.first_name | highlight: $select.search"></div>
+              <small ng-bind-html="item.email | highlight: $select.search"></small>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 25px" ng-show="!!SearchCustomerCtrl.model.customer.id">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div ng-cloak>
+                <md-content>
+                  <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="Information">
+                      <md-content class="md-padding">
+                        <md-list>
+                          <md-subheader class="md-no-sticky">General Information</md-subheader>
+                          <md-list-item>
+                            <table class="table customerInfomation">
+                              <tr>
+                                <td width="35%">ID</td>
+                                <td>{{SearchCustomerCtrl.model.customer.id}}</td>
+                              </tr>
+                              <tr>
+                                <td>First Name</td>
+                                <td>{{SearchCustomerCtrl.model.customer.first_name}}</td>
+                              </tr>
+                              <tr>
+                                <td>Last Name</td>
+                                <td>{{SearchCustomerCtrl.model.customer.last_name}}</td>
+                              </tr>
+                              <tr>
+                                <td>Email</td>
+                                <td>{{SearchCustomerCtrl.model.customer.email}}</td>
+                              </tr>
+                              <tr>
+                                <td>Gender</td>
+                                <td>{{SearchCustomerCtrl.model.customer.gender}}</td>
+                              </tr>
+                              <tr>
+                                <td>Group Id</td>
+                                <td>{{SearchCustomerCtrl.model.customer.group_id}}</td>
+                              </tr>
+                            </table>
+                          </md-list-item>
+                          <md-divider></md-divider>
+
+                          <md-subheader class="md-no-sticky">Address Information</md-subheader>
+                          <md-list-item>
+                            <table class="table customerInfomation">
+                              <tr>
+                                <td width="35%">City</td>
+                                <td>{{SearchCustomerCtrl.model.customerAdd.city}}</td>
+                              </tr>
+                              <tr>
+                                <td width="35%">Country Code</td>
+                                <td>{{SearchCustomerCtrl.model.customerAdd.city}}</td>
+                              </tr>
+                              <tr>
+                                <td>Region</td>
+                                <td>{{SearchCustomerCtrl.model.customerAdd.region}}</td>
+                              </tr>
+                              <tr>
+                                <td>Telephone</td>
+                                <td>{{SearchCustomerCtrl.model.customerAdd.telephone}}</td>
+                              </tr>
+                              <tr>
+                                <td>Street</td>
+                                <td>{{SearchCustomerCtrl.model.customerAdd.street}}</td>
+                              </tr>
+                            </table>
+                          </md-list-item>
+                          <md-divider></md-divider>
+
+                          <md-subheader class="md-no-sticky">Action</md-subheader>
+                          <md-list-item ng-repeat="topping in toppings">
+                            <p> {{ topping.name }} </p>
+                            <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>
+                          </md-list-item>
+                          <md-divider></md-divider>
+                          <br>
+                        </md-list>
+                      </md-content>
+                    </md-tab>
+                    <md-tab label="Orders">
+                      <md-content class="md-padding">
+                        <h1 class="md-display-2">Tab Two</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis
+                          vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis
+                          nec,
+                          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor
+                          sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies id a
+                          nisl.
+                          Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac
+                          lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu,
+                          bibendum
+                          ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae.
+                          Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
+                        <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere nec
+                          sapien
+                          sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis
+                          diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet nisl at, hendrerit tempor
+                          turpis.
+                          Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit amet,
+                          tempus
+                          sapien.</p>
+                        <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget
+                          congue
+                          risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci
+                          commodo
+                          volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+                      </md-content>
+                    </md-tab>
+                  </md-tabs>
+                </md-content>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
     </ion-content>
   </div>
 </ion-view>

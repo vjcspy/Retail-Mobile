@@ -1,0 +1,7 @@
+.customerInfomation td {
+  border: none !important;
+}
+
+.customerInfomation tr td:first-child {
+  font-weight: bolder;
+}

@@ -100,7 +100,9 @@ app
         })
         .state('app.customer', {
           url: '/customer',
-          resolve: load('scripts/controllers/customer/search.js'),
+          resolve: {
+            deps: load(['scripts/controllers/customer/search.js']).deps
+          },
           views: {
             'menuContent': {
               templateUrl: 'views/app/customer/search.html',

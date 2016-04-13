@@ -14,8 +14,8 @@ app.constant('MODULE_CONFIG', [
       name: 'ui.select',
       module: true,
       files: [
-        '../libs/angular/angular-ui-select/dist/select.min.js',
-        '../libs/angular/angular-ui-select/dist/select.min.css'
+        'bower_components/ui-select/dist/select.min.js',
+        'bower_components/ui-select/dist/select.min.css'
       ]
     }, {
       name: 'ui.crud.editor',

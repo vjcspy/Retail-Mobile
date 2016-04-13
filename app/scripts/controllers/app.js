@@ -32,11 +32,13 @@ app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$
 
     /*Loading */
     $scope.showLoadingData = function () {
+      console.log('show loading bar');
       $ionicLoading.show({
         template: '<ion-spinner icon="' + $scope.AppCtrl.data.iconLoading + '"></ion-spinner>'
       });
     };
     $scope.hideLoadingData = function () {
+      console.log('hide loading bar');
       $ionicLoading.hide();
     };
 
