@@ -26,28 +26,17 @@ app
           url: '/home',
           resolve: {
             deps: load(['scripts/controllers/app/home.js', 'scripts/services/home/pull.js']).deps,
-            isLoadFull: function (pullService, $state, toastr, $q) {
+            isHasInfomationAuth: function (pullService, $state, toastr, $q) {
               var defer = $q.defer();
               var isHasInfo = pullService.isHasInformationWebsite();
-              isHasInfo.then(function (ok) {
-                if (ok) {
-                  var isPullFullData = pullService.isPullFullData();
-                  isPullFullData.then(function (ok) {
-                    if (ok) {
-                      console.log('PULL FULL');
-                      return defer.resolve(true);
-                    }
-                    else {
-                      console.log('PULL NOT FULL');
-                      return defer.resolve(false);
-                    }
-                  })
-                } else {
+              isHasInfo.then(function (hasInfo) {
+                if (!hasInfo) {
                   // toastr.clear([toast]);
                   toastr.info('Phải có thông tin đăng nhập');
                   $state.go('app.configuration.shop');
                   return defer.reject('NOT_HAVE_INFORMATION');
                 }
+                return defer.resolve(true);
               });
               return defer.promise;
             }
