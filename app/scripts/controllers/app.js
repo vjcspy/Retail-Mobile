@@ -8,10 +8,13 @@ app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$
     // get current language, if it save before
     appConfigData.getConfig('app_language').then(function (o) {
       $scope.AppCtrl.data.language = o;
-      if (!!o)
-        $izTranslate.changeLanguage(o);
+      if (!o)
+        $scope.AppCtrl.data.language = 'en';
+      $izTranslate.changeLanguage($scope.AppCtrl.data.language);
     });
     appConfigData.getConfig('loading_type').then(function (o) {
+      if (!o)
+        o = 'android';
       $scope.AppCtrl.data.iconLoading = o;
     });
 
@@ -108,7 +111,7 @@ app.controller('AppCtrl', ['$scope', '$ionicHistory', '$ionicNavBarDelegate', '$
 
     /*direct to loading page when not have data*/
     $scope.AppCtrl.data.pullFullData = false;
-    if ($scope.AppCtrl.data.pullFullData){
+    if ($scope.AppCtrl.data.pullFullData) {
       $state.go('app.home');
     }
   }]);

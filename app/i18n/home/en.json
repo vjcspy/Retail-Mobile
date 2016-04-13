@@ -16,5 +16,6 @@
   "CONFIG_TILE_ADVANCE": "Advance",
   "WEBSITE_URL": "Your Website Url",
   "WEBSITE_PASS": "Your Password",
-  "ERROR_REQUIRE": "This is required."
+  "ERROR_REQUIRE": "This is required.",
+  "CLEAR_APP_DATA": "Reset Application"
 }

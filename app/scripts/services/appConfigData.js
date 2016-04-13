@@ -20,7 +20,7 @@ app.service('appConfigData', ['$indexedDB', 'toastr', '$log', '$q', function ($i
           return defer.resolve(e.value);
         else
           return defer.resolve(null);
-      }, function (err) {
+      }, function () {
         return defer.resolve(null);
       });
     });

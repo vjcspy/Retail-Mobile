@@ -90,8 +90,12 @@ app
         })
         .state('app.configuration.advance', {
           url: '/advance',
+          resolve: load('scripts/controllers/app/system/tabs/advance.js'),
           views: {
-            'contentConfig': {templateUrl: 'views/app/system/tabs/advanced.html'}
+            'contentConfig': {
+              templateUrl: 'views/app/system/tabs/advanced.html',
+              controller: 'AdvanceConfigCtrl'
+            }
           }
         });
 

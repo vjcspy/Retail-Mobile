@@ -16,5 +16,6 @@
   "CONFIG_TILE_ADVANCE": "Nâng cao",
   "WEBSITE_URL": "Link Website",
   "WEBSITE_PASS": "Mật khẩu",
-  "ERROR_REQUIRE": "Đây là trường bắt buộc"
+  "ERROR_REQUIRE": "Đây là trường bắt buộc",
+  "CLEAR_APP_DATA": "Xóa toàn bộ dữ liệu"
 }
