@@ -3,8 +3,8 @@
  */
 app.service('urlManagement', function () {
   var urls = {
-    pull_customer: '/rest/v1/xretail/customer',
-    pull_product: '/rest/v1/xretail/xproduct'
+    pull_customers: '/rest/v1/xretail/customer',
+    pull_products: '/rest/v1/xretail/xproduct'
   };
   this.getUrl = function (key) {
     return urls[key];

@@ -6,6 +6,7 @@
 var app = angular.module('xretailApp',
   [
     'ionic',
+    'ngAria',
     // 'ngTouch',
     'ionic-material',
     'ngMessages',
