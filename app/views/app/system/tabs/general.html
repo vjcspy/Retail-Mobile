@@ -5,8 +5,8 @@
       <md-list-item>
         <p> {{ 'LOADING_TYPE' | translate}} </p>
         <md-input-container md-no-float class="md-block md-secondary" flex-gt-sm>
-          <md-select ng-model="$parent.AppCtrl.data.iconLoading">
-            <md-option ng-change="changeLoadingType()" ng-selected="option.value == $parent.AppCtrl.data.iconLoading"
+          <md-select ng-change="changeLoadingType()" ng-model="$parent.AppCtrl.data.iconLoading">
+            <md-option ng-selected="option.value == $parent.AppCtrl.data.iconLoading"
                        ng-repeat="option in ConfigurationCtrl.data.loadingType"
                        value="{{option.value}}">{{option.label}}
             </md-option>
