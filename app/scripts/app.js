@@ -16,7 +16,8 @@ var app = angular.module('xretailApp',
     'oc.lazyLoad',
     'ngAnimate',
     'toastr',
-    'angular-loading-bar'
+    'angular-loading-bar',
+    'ui.select'
   ])
   .config(
     ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide',

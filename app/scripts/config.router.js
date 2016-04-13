@@ -97,7 +97,18 @@ app
               controller: 'AdvanceConfigCtrl'
             }
           }
-        });
+        })
+        .state('app.customer', {
+          url: '/customer',
+          resolve: load('scripts/controllers/customer/search.js'),
+          views: {
+            'menuContent': {
+              templateUrl: 'views/app/customer/search.html',
+              controller: 'SearchCustomerCtrl'
+            }
+          }
+        })
+      ;
 
       function load(srcs, callback) {
         return {
