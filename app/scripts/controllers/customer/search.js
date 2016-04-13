@@ -1,28 +1,44 @@
 /**
  * Created by vjcspy on 13/04/2016.
  */
-app.controller('SearchCustomerCtrl', ['$scope', 'customerService', 'lodash', '$timeout', function ($scope, customerService, _, $timeout) {
+app.controller('SearchCustomerCtrl', ['$scope', 'customerService', 'lodash', '$timeout', '$ionicPlatform', 'toastr',
+  function ($scope, customerService, _, $timeout, $ionicPlatform, toastr) {
 
-  $scope.SearchCustomerCtrl = {};
-  $scope.SearchCustomerCtrl.data = {};
-  $scope.SearchCustomerCtrl.model = {};
+    $scope.SearchCustomerCtrl = {};
+    $scope.SearchCustomerCtrl.data = {};
+    $scope.SearchCustomerCtrl.model = {};
 
-  customerService.getAllCustomers().then(function (cus) {
-    $scope.SearchCustomerCtrl.data.customers = cus;
-  });
-  $scope.toppings = [
-    {name: 'Active', wanted: true},
-  ];
-  $scope.selectCustomer = function () {
-    $scope.showLoadingData();
-    $timeout(function () {
-      var defaultShipping = $scope.SearchCustomerCtrl.model.customer.default_shipping;
-      $scope.SearchCustomerCtrl.model.customerAdd = _.find($scope.SearchCustomerCtrl.model.customer.address, {
-        'entity_id': defaultShipping,
-        'is_active': "1"
+    customerService.getAllCustomers().then(function (cus) {
+      $scope.SearchCustomerCtrl.data.customers = cus;
+    });
+    $scope.toppings = [
+      {name: 'Active', wanted: true}
+    ];
+    $scope.selectCustomer = function () {
+      $ionicPlatform.ready(function () {
+        if (window.cordova && window.cordova.plugins.Keyboard) {
+          conole.log('herer');
+          cordova.plugins.Keyboard.close();
+        }
       });
-      $scope.hideLoadingData();
-    }, 500);
-  }
+      $scope.showLoadingData();
 
-}]);
+      /*FIND CUSTOMER address and Orders*/
+      $timeout(function () {
+        var defaultShipping = $scope.SearchCustomerCtrl.model.customer.default_shipping;
+        $scope.SearchCustomerCtrl.model.customerAdd = _.find($scope.SearchCustomerCtrl.model.customer.address, {
+          'entity_id': defaultShipping,
+          'is_active': "1"
+        });
+        customerService.getOrdersByCustomerId($scope.SearchCustomerCtrl.model.customer.id).then(function (data) {
+          $scope.SearchCustomerCtrl.model.customerOrders = data;
+          $scope.hideLoadingData();
+        }, function (rej) {
+          toastr.error(rej);
+        });
+
+      }, 500);
+
+    }
+
+  }]);
