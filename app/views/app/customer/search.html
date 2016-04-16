@@ -14,7 +14,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 25px" ng-show="!!SearchCustomerCtrl.model.customer.id">
           <div class="panel panel-default">
-            <div class="panel-body">
+            <div class="panel-body customerInfoPanel">
               <div ng-cloak>
                 <md-content>
                   <md-tabs md-dynamic-height md-border-bottom
@@ -57,11 +57,11 @@
                           <md-list-item>
                             <table class="table customerInfomation">
                               <tr>
-                                <td width="35%">City</td>
+                                <td width="42%">City</td>
                                 <td>{{SearchCustomerCtrl.model.customerAdd.city}}</td>
                               </tr>
                               <tr>
-                                <td width="35%">Country Code</td>
+                                <td width="42%">Country Code</td>
                                 <td>{{SearchCustomerCtrl.model.customerAdd.city}}</td>
                               </tr>
                               <tr>
@@ -92,6 +92,25 @@
                     </md-tab>
                     <md-tab label="Orders">
                       <md-content class="md-padding">
+
+                        <div class="panel panel-success">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Transaction</h3>
+                          </div>
+                          <div class="panel-body">
+                            <table class="table customerInfomation">
+                              <tr>
+                                <td width="42%">Order count</td>
+                                <td>{{SearchCustomerCtrl.model.customerOrders.length}}</td>
+                              </tr>
+                              <tr>
+                                <td width="42%">Totals</td>
+                                <td>{{SearchCustomerCtrl.model.customerOrders | orderTotals}}</td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+
                         <div ng-repeat="order in SearchCustomerCtrl.model.customerOrders" class="panel panel-default">
                           <div class="panel-body">
                             <table class="table customerInfomation">

@@ -101,12 +101,24 @@ app
         .state('app.customer', {
           url: '/customer',
           resolve: {
-            deps: load(['scripts/controllers/customer/search.js']).deps
+            deps: load(['scripts/filters/customer/totals.js', 'scripts/controllers/customer/search.js']).deps
           },
           views: {
             'menuContent': {
               templateUrl: 'views/app/customer/search.html',
               controller: 'SearchCustomerCtrl'
+            }
+          }
+        })
+        .state('app.product', {
+          url: '/product',
+          resolve: {
+            deps: load(['scripts/services/product/productIndexedDB.js', 'scripts/controllers/product/search.js']).deps
+          },
+          views: {
+            'menuContent': {
+              templateUrl: 'views/app/product/search.html',
+              controller: 'searchProductCtrl'
             }
           }
         })

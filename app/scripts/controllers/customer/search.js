@@ -1,6 +1,7 @@
 /**
  * Created by vjcspy on 13/04/2016.
  */
+'use strict';
 app.controller('SearchCustomerCtrl', ['$scope', 'customerService', 'lodash', '$timeout', '$ionicPlatform', 'toastr',
   function ($scope, customerService, _, $timeout, $ionicPlatform, toastr) {
 
@@ -14,10 +15,13 @@ app.controller('SearchCustomerCtrl', ['$scope', 'customerService', 'lodash', '$t
     $scope.toppings = [
       {name: 'Active', wanted: true}
     ];
+
+    var customerInfoPanelElem = $('.customerInfoPanel');
+
     $scope.selectCustomer = function () {
+      customerInfoPanelElem.click().focus();
       $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
-          conole.log('herer');
           cordova.plugins.Keyboard.close();
         }
       });
