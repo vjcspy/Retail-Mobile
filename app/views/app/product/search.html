@@ -1,0 +1,102 @@
+<ion-view view-title="Product">
+  <div class="row">
+    <ion-content>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 25px">
+        <div class="input-group">
+          <ui-select ng-model="searchProductCtrl.model.product" theme="bootstrap" on-select="selectProduct()">
+            <ui-select-match placeholder="Search a product by ID,Name,Sku,...">{{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="item in searchProductCtrl.data.products"
+                               refresh="refreshProducts($select.search)"
+                               refresh-delay="300">
+              <div ng-bind-html="item.name | highlight: $select.search"></div>
+              <small ng-show="!!item.id"><b>ID:</b></small>
+              <small ng-bind-html="item.id | highlight: $select.sku"></small>
+              <small ng-show="!!item.id"><b>SKU:</b></small>
+              <small ng-bind-html="item.sku | highlight: $select.sku"></small>
+            </ui-select-choices>
+          </ui-select>
+          <span class="input-group-addon" id="basic-addon2" on-tap="openBarcode()">BarCode</span>
+        </div>
+      </div>
+      <div ng-if="!!searchProductCtrl.model.product.id" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 25px">
+        <md-content class="md-padding">
+          <md-card md-theme="default" md-theme-watch>
+            <md-card-title>
+              <md-card-title-text>
+                <div class="md-headline">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    {{searchProductCtrl.model.product.name}}
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div style="height: 175px;position: relative;"><img src="{{searchProductCtrl.model.product.origin_image}}"></div>
+                  </div>
+                </div>
+                <div class="md-subhead">
+                  <md-content class="" style="margin-top: 25px">
+                    <md-list>
+                      <md-subheader class="md-no-sticky">General Information</md-subheader>
+                      <md-list-item>
+                        <table class="table customerInfomation">
+                          <tr>
+                            <td width="42%">ID</td>
+                            <td>{{searchProductCtrl.model.product.id}}</td>
+                          </tr>
+                          <tr>
+                            <td>Name</td>
+                            <td>{{searchProductCtrl.model.product.name}}</td>
+                          </tr>
+                          <tr>
+                            <td>Price</td>
+                            <td>{{searchProductCtrl.model.product.price}}</td>
+                          </tr>
+                          <tr>
+                            <td>Type</td>
+                            <td>{{searchProductCtrl.model.product.type_id}}</td>
+                          </tr>
+                          <tr>
+                            <td>Description</td>
+                            <td>{{searchProductCtrl.model.product.short_description}}</td>
+                          </tr>
+                        </table>
+                      </md-list-item>
+                      <md-divider></md-divider>
+
+                      <md-subheader ng-show="searchProductCtrl.model.product.type_id == 'simple'" class="md-no-sticky">Stock Information
+                      </md-subheader>
+                      <md-list-item ng-show="searchProductCtrl.model.product.type_id == 'simple'">
+                        <table class="table customerInfomation">
+                          <tr>
+                            <td width="42%">Qty</td>
+                            <td>{{searchProductCtrl.model.product.stock_items.qty}}</td>
+                          </tr>
+                          <tr>
+                            <td width="42%">In stock</td>
+                            <td>{{searchProductCtrl.model.product.stock_items.is_in_stock}}</td>
+                          </tr>
+                        </table>
+                      </md-list-item>
+                      <md-divider ng-show="searchProductCtrl.model.product.type_id == 'simple'"></md-divider>
+
+                      <md-subheader class="md-no-sticky">Action</md-subheader>
+                      <md-list-item ng-repeat="topping in toppings">
+                        <p> {{ topping.name }} </p>
+                        <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>
+                      </md-list-item>
+                      <md-divider></md-divider>
+                      <br>
+                    </md-list>
+                  </md-content>
+                </div>
+              </md-card-title-text>
+            </md-card-title>
+            <!--<md-card-actions layout="row" layout-align="end center">-->
+            <!--<md-button>Action 1</md-button>-->
+            <!--<md-button>Action 2</md-button>-->
+            <!--</md-card-actions>-->
+          </md-card>
+        </md-content>
+      </div>
+    </ion-content>
+  </div>
+</ion-view>
