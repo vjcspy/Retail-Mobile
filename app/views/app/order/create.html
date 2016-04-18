@@ -1,5 +1,187 @@
-<ion-view view-title="Create Order">
-  <ion-content>
-    <h1>Create order</h1>
-  </ion-content>
+<ion-view cache-view="false" view-title="Create new order">
+  <div class="row">
+    <ion-content>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 10px" ng-show="!!CreateOrderCtrl.model.customer.id">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{CreateOrderCtrl.model.customer.first_name}} {{CreateOrderCtrl.model.customer.last_name}}</h3>
+          </div>
+          <div class="panel-body">
+            {{CreateOrderCtrl.model.customer.email}} - {{CreateOrderCtrl.model.customerAdd.telephone}}
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <button type="button" class="btn btn-default pull-left">
+                  <span class="glyphicon glyphicon-search"></span> Details
+                </button>
+                <button type="button" class="btn btn-default pull-right" on-tap="changeCustomer()">
+                  <span class="glyphicon glyphicon-refresh"></span> Change
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="ion-android-cart"></i>&nbsp;Cart</h3>
+          </div>
+          <div class="panel-body">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 25px">
+              <div class="input-group">
+                <ui-select skip-focusser="false" ng-model="CreateOrderCtrl.model.product" theme="bootstrap" on-select="selectProduct()">
+                  <ui-select-match placeholder="Search a product...">{{$select.selected.name | izCutString:true:20}}
+                  </ui-select-match>
+                  <ui-select-choices repeat="item in CreateOrderCtrl.data.products"
+                                     refresh="refreshProducts($select.search)"
+                                     refresh-delay="300">
+                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    <small ng-show="!!item.id"><b>ID:</b></small>
+                    <small ng-bind-html="item.id | highlight: $select.sku"></small>
+                    <small ng-show="!!item.id"><b>SKU:</b></small>
+                    <small ng-bind-html="item.sku | highlight: $select.sku"></small>
+                  </ui-select-choices>
+                </ui-select>
+                <span class="input-group-addon" id="basic-addon2" on-tap="openBarcode()">BarCode</span>
+
+              </div>
+            </div>
+            <div ng-show="!!CreateOrderCtrl.model.product.id" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 product-found" style="margin-top:
+            15px">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="form-group">
+                    <label class="control-label" style="font-weight: normal">Price</label>
+                    <a class="form-control md-input " href="#" editable-number="user.number" e-min="0">{{ user.number || 0 }}</a>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label" style="font-weight: normal">Qty</label>
+                    <a class="form-control md-input " href="#" editable-number="user.number" e-min="0">{{ user.number || 1 }}</a>
+                  </div>
+                </div>
+                <footer class="panel-footer text-right">
+                  <button type="submit" class="btn btn-info" ng-disabled="form.$invalid">Add to Cart</button>
+                </footer>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 10px;padding: 0px !important;">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr class="active">
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Guy Bardsley</td>
+                    <td>2750</td>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <td>Adam Callahan</td>
+                    <td>3300</td>
+                    <td>4</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sub total</strong></td>
+                    <td><strong>6050</strong></td>
+                    <td><strong>8000</strong></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="ion-ios-bolt"></i>&nbsp;Vouchers</h3>
+          </div>
+          <div class="panel-body">
+            <div class="input-group">
+              <input class="form-control input-color" type="text" id="voucher" value="">
+              <div class="input-group-addon">
+                <i class="ion-load-c"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="ion-email"></i>&nbsp;Addresses</h3>
+          </div>
+          <div class="panel-body">
+            <md-list ng-cloak>
+              <md-subheader class="md-no-sticky"><i class="ion-cube"></i>&nbsp;Delivery</md-subheader>
+              <md-list-item>
+                <p> Khach hang </p>
+              </md-list-item>
+              <md-divider></md-divider>
+              <md-subheader class="md-no-sticky"><i class="ion-document-text"></i>&nbsp;Invoice</md-subheader>
+              <md-list-item>
+                <p> Dia chi </p>
+              </md-list-item>
+              <md-divider></md-divider>
+            </md-list>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="ion-android-car"></i>&nbsp;Shipping</h3>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="control-label" style="font-weight: normal">Delivery option</label>
+              <select name="name" class="form-control">
+                <option value=""> -- Select One --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="control-label" style="font-weight: normal">Price</label>
+              <input type="number" name="name" id="inputID" class="form-control input-color" value="" title="" required="required">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="ion-android-checkbox-outline"></i>&nbsp;Order Comment</h3>
+          </div>
+          <div class="panel-body">
+            <md-input-container class="md-block">
+              <label>Comment</label>
+              <textarea ng-model="user.biography" md-maxlength="300" rows="8" md-select-on-focus></textarea>
+            </md-input-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="ion-android-clipboard"></i>&nbsp;Summary</h3>
+          </div>
+          <div class="panel-body">
+            Panel body
+          </div>
+        </div>
+      </div>
+    </ion-content>
+  </div>
 </ion-view>

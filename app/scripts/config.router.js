@@ -64,7 +64,12 @@ app
         .state('app.choose-customer.create', {
           url: '/create',
           resolve: {
-            deps: load(['scripts/services/order/create.js', 'scripts/controllers/order/create.js']).deps
+            deps: load([
+              'scripts/filters/general/cut-string.js',
+              'scripts/services/product/productIndexedDB.js',
+              'scripts/services/order/create.js',
+              'scripts/controllers/order/create.js'
+            ]).deps
           },
           views: {
             'menuContent@app': {

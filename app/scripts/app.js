@@ -17,7 +17,8 @@ var app = angular.module('xretailApp',
     'ngAnimate',
     'toastr',
     'angular-loading-bar',
-    'ui.select'
+    'ui.select',
+    'xeditable'
   ])
   .config(
     ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
@@ -65,4 +66,9 @@ var app = angular.module('xretailApp',
       $log.error("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
     } else
       $log.info('Work With IndexedDB');
+  })
+  .run(function (editableOptions, editableThemes) {
+    editableThemes.bs3.inputClass = 'input-sm';
+    editableThemes.bs3.buttonsClass = 'btn-sm';
+    editableOptions.theme = 'bs3';
   });
