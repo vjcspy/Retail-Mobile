@@ -1,0 +1,52 @@
+<ion-view view-title="Choose Customer">
+  <div class="row">
+    <ion-content>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 20px">
+        <div class="panel panel-default">
+          <!--<div class="panel-heading">-->
+          <!--<h3 class="panel-title">Select Customer</h3>-->
+          <!--</div>-->
+          <div class="panel-body">
+            <ui-select ng-model="CreateOrderCtrl.model.customer" theme="bootstrap" on-select="selectCustomer()">
+              <ui-select-match placeholder="Select or search a customer in the list...">{{$select.selected.first_name}} -
+                {{$select.selected.last_name}}
+              </ui-select-match>
+              <ui-select-choices repeat="item in CreateOrderCtrl.data.customers | filter: $select.search">
+                <div ng-bind-html="item.first_name | highlight: $select.search"></div>
+                <small ng-bind-html="item.email | highlight: $select.search"></small>
+              </ui-select-choices>
+            </ui-select>
+            <div style="margin-top: 5px;margin-left: 20px"> Or
+              <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span> Create new Customer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 10px" ng-show="!!CreateOrderCtrl.model.customer.id">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{CreateOrderCtrl.model.customer.first_name}} {{CreateOrderCtrl.model.customer.last_name}}</h3>
+          </div>
+          <div class="panel-body">
+            {{CreateOrderCtrl.model.customer.email}} - {{CreateOrderCtrl.model.customerAdd.telephone}}
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <button type="button" class="btn btn-default pull-left">
+                  <span class="glyphicon glyphicon-search"></span> Details
+                </button>
+                <button type="button" class="btn btn-default pull-right" on-tap="chooseCustomer()">
+                  <span class="glyphicon glyphicon-arrow-right"></span> Choose
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+  </div>
+</ion-view>
