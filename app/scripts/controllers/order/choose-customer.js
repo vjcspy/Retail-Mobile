@@ -32,6 +32,6 @@ app.controller('ChooseCustomerCtrl', ['$scope', 'customerService', 'lodash', '$t
     $scope.chooseCustomer = function () {
       OrderService.setCustomerData($scope.ChooseCustomerCtrl.model.customer);
       OrderService.setCustomerAdd($scope.ChooseCustomerCtrl.model.customerAdd);
-      $state.go('app.choose-customer.create');
+      $state.go('app.choose-customer.create', {}, {reload: true});
     }
   }]);
