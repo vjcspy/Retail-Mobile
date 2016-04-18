@@ -48,11 +48,28 @@ app
             }
           }
         })
-        .state('app.order', {
-          url: '/Order',
+        .state('app.choose-customer', {
+          url: '/choose-customer',
+          resolve: {
+            deps: load(['scripts/services/order/create.js', 'scripts/controllers/order/choose-customer.js']).deps
+          },
           views: {
             'menuContent': {
-              templateUrl: 'views/app/order/create.html'
+              templateUrl: 'views/app/order/choose-customer.html',
+              controller: 'ChooseCustomerCtrl'
+            }
+          }
+        })
+
+        .state('app.choose-customer.create', {
+          url: '/create',
+          resolve: {
+            deps: load(['scripts/services/order/create.js', 'scripts/controllers/order/create.js']).deps
+          },
+          views: {
+            'menuContent@app': {
+              templateUrl: 'views/app/order/create.html',
+              controller: 'CreateOrderCtrl'
             }
           }
         })

@@ -1,14 +1,14 @@
 /**
  * Created by vjcspy on 18/04/2016.
  */
-app.controller('CreateOrderCtrl', ['$scope', 'customerService', 'lodash', '$timeout', '$ionicPlatform', 'toastr', 'OrderService', '$state',
+app.controller('ChooseCustomerCtrl', ['$scope', 'customerService', 'lodash', '$timeout', '$ionicPlatform', 'toastr', 'OrderService', '$state',
   function ($scope, customerService, _, $timeout, $ionicPlatform, toastr, OrderService, $state) {
-    $scope.CreateOrderCtrl = {};
-    $scope.CreateOrderCtrl.data = {};
-    $scope.CreateOrderCtrl.model = {};
+    $scope.ChooseCustomerCtrl = {};
+    $scope.ChooseCustomerCtrl.data = {};
+    $scope.ChooseCustomerCtrl.model = {};
 
     customerService.getAllCustomers().then(function (cus) {
-      $scope.CreateOrderCtrl.data.customers = cus;
+      $scope.ChooseCustomerCtrl.data.customers = cus;
     });
     $scope.selectCustomer = function () {
       $ionicPlatform.ready(function () {
@@ -20,8 +20,8 @@ app.controller('CreateOrderCtrl', ['$scope', 'customerService', 'lodash', '$time
 
       /*FIND CUSTOMER address and Orders*/
       $timeout(function () {
-        var defaultShipping = $scope.CreateOrderCtrl.model.customer.default_shipping;
-        $scope.CreateOrderCtrl.model.customerAdd = _.find($scope.CreateOrderCtrl.model.customer.address, {
+        var defaultShipping = $scope.ChooseCustomerCtrl.model.customer.default_shipping;
+        $scope.ChooseCustomerCtrl.model.customerAdd = _.find($scope.ChooseCustomerCtrl.model.customer.address, {
           'entity_id': defaultShipping,
           'is_active': "1"
         });
@@ -30,8 +30,8 @@ app.controller('CreateOrderCtrl', ['$scope', 'customerService', 'lodash', '$time
     };
 
     $scope.chooseCustomer = function () {
-      OrderService.setCustomerData($scope.CreateOrderCtrl.model.customer);
-      OrderService.setCustomerAdd($scope.CreateOrderCtrl.model.customerAdd);
-      $state.go('app.order.create');
+      OrderService.setCustomerData($scope.ChooseCustomerCtrl.model.customer);
+      OrderService.setCustomerAdd($scope.ChooseCustomerCtrl.model.customerAdd);
+      $state.go('app.choose-customer.create');
     }
   }]);
