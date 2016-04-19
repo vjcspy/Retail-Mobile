@@ -18,6 +18,12 @@ app.constant('MODULE_CONFIG', [
         'bower_components/ui-select/dist/select.min.css'
       ]
     }, {
+      name: 'izOrder',
+      module: true,
+      files: [
+        'scripts/services/order/create.js'
+      ]
+    }, {
       name: 'ui.crud.editor',
       module: true,
       files: [

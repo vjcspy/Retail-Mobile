@@ -51,7 +51,7 @@ app
         .state('app.choose-customer', {
           url: '/choose-customer',
           resolve: {
-            deps: load(['scripts/services/order/create.js', 'scripts/controllers/order/choose-customer.js']).deps
+            deps: load(['izOrder', 'scripts/controllers/order/choose-customer.js']).deps
           },
           views: {
             'menuContent': {

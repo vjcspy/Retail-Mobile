@@ -53,5 +53,26 @@ app.controller('CreateOrderCtrl', ['$scope', '$state', 'OrderService', 'productS
 
   $scope.changeCustomer = function () {
     $state.go('app.choose-customer');
-  }
+  };
+  $scope.changeShippingAmount = function () {
+    $scope.showLoadingData();
+    OrderService.setShippingAmount($scope.CreateOrderCtrl.model.shippingAmount);
+    OrderService.loadBlock().then(function () {
+      $scope.CreateOrderCtrl.model.totals = OrderService.totals();
+      $scope.hideLoadingData();
+    }, function () {
+      $scope.hideLoadingData();
+    });
+  };
+  $scope.addToCart = function () {
+    $scope.showLoadingData();
+    OrderService.addProductToCart($scope.CreateOrderCtrl.model.product);
+    OrderService.loadBlock().then(function () {
+      $scope.CreateOrderCtrl.model.totals = OrderService.totals();
+      $scope.hideLoadingData();
+    }, function () {
+      $scope.hideLoadingData();
+    });
+  };
+  $scope.CreateOrderCtrl.model.cart = OrderService.cart();
 }]);
