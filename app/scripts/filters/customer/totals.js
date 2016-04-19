@@ -5,6 +5,8 @@
 'use strict';
 app.filter('orderTotals', function () {
   return function (orders, field) {
+    if (typeof orders != 'object')
+      return 0;
     field = field || 'grand_total';
     var totals = 0;
     $.each(orders, function (k, v) {
