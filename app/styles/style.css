@@ -25,6 +25,23 @@
 
 /*Shop Config*/
 .input-color {
-  background-color: beige !important;
+  background-color: aliceblue !important;
 }
 
+.panel-default > .panel-heading {
+  background: #fafafa none !important;
+}
+
+.panel-default > .panel-footer {
+  background: #fafafa none !important;
+}
+
+.summary-order {
+  font-weight: 300;
+  font-size: larger;
+}
+
+.summary-order-label {
+  font-size: inherit;
+  font-weight: normal;
+}

@@ -26,7 +26,7 @@
       </div>
 
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 10px" ng-show="!!ChooseCustomerCtrl.model.customer.id">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
           <div class="panel-heading">
             <h3 class="panel-title">{{ChooseCustomerCtrl.model.customer.first_name}} {{ChooseCustomerCtrl.model.customer.last_name}}</h3>
           </div>
@@ -51,7 +51,7 @@
                 <button type="button" class="btn btn-default pull-left">
                   <span class="glyphicon glyphicon-search"></span> Details
                 </button>
-                <button type="button" class="btn btn-default pull-right" on-tap="chooseCustomer()">
+                <button type="button" class="btn btn-default pull-right" style="    margin-right: -30px;" on-tap="chooseCustomer()">
                   <span class="glyphicon glyphicon-arrow-right"></span> Choose
                 </button>
               </div>
