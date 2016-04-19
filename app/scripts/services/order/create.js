@@ -11,6 +11,7 @@ orders
       var shippingAmount = 0;
       var shippingMethod = 'xpos_shipping';
       var paymentMethod = 'xpayment_dummy1';
+      var paymentAmount = 0;
 
       var totals = {};
 
@@ -64,7 +65,7 @@ orders
           }
           else {
             var k;
-            _.forEach(cart, function (value, key) {
+            $.each(cart, function (key, value) {
               if (value.id == product.id) {
                 k = key;
                 return false;
@@ -76,11 +77,24 @@ orders
         return cart;
       };
 
+      this.removeItem = function (product_id) {
+        var k = null;
+        _.forEach(cart, function (value, key) {
+          if (value.id == product_id) {
+            k = key;
+            return false;
+          }
+        });
+        if (k != null)
+          cart.splice(k, 1);
+
+      };
+
       this.cart = function () {
         return cart;
       };
 
-      this.loadBlock = function () {
+      this.loadBlock = function (isSaveOrder) {
         var defer = $q.defer();
         var data = {};
 
@@ -91,11 +105,24 @@ orders
         data.order.billing_address = OrderAddressService.getBillingAddress(customerAdd);
         data.order.shipping_address = OrderAddressService.getShippingAddress(customerAdd);
         data.order.payment_method = paymentMethod;
+        if (paymentMethod == 'xretail_multiple_payment') {
+          data.payment_data = {};
+          data.payment_data.xpayment_dummy1 = paymentAmount;
+        }
+        if (paymentMethod == 'xpayment_dummy1' && paymentMethod.hasOwnProperty('payment_data'))
+          delete data.payment_data;
         data.order.shipping_method = shippingMethod;
         data.order.shipping_amount = shippingAmount;
 
         appConfigData.getConfig('website_url').then(function (websiteUrl) {
-          $http.post(websiteUrl + urlManagement.getUrl('load_block'), data).then(function (response) {
+
+          var url;
+          if (isSaveOrder === true)
+            url = websiteUrl + urlManagement.getUrl('create_order');
+          else
+            url = websiteUrl + urlManagement.getUrl('load_block');
+
+          $http.post(url, data).then(function (response) {
             totals = response.data.totals;
             return defer.resolve(response);
           }, function (reject) {
@@ -114,6 +141,9 @@ orders
     this.getItems = function (cart) {
       var items = [];
       _.forEach(cart, function (value, key) {
+        if (typeof value == 'undefined')
+          return false;
+
         var currentItem = {};
         currentItem.qty = value.buyQty;
         if (value.customPrice != value.price)
@@ -129,11 +159,27 @@ orders
   .service('OrderAddressService', ['lodash', function (_) {
     this.getBillingAddress = function (customer) {
       var billingData = {};
+      // 'firstname'  => 'Jack',
+      //   'lastname'   => 'Fitz',
+      //   'street'     =>
+      // array(
+      //   0 => '7NWillowSt',
+      // ),
+      // 'city'       => 'Montclair',
+      //   'country_id' => 'US',
+      //   'region_id'  => '41',
+      //   'region'     => 'NewJersey',
+      //   'postcode'   => '07042',
+      //   'telephone'  => '222-555-4190',
       billingData.city = customer.city;
       billingData.country_id = customer.country_id;
       billingData.region_id = customer.region_id;
       billingData.region = customer.region;
       billingData.postcode = customer.postcode;
+      billingData.firstname = customer.firstname;
+      billingData.lastname = customer.lastname;
+      billingData.street = customer.street;
+      billingData.telephone = customer.telephone;
       return billingData;
     };
     this.getShippingAddress = function (customer) {
@@ -143,6 +189,10 @@ orders
       shippingData.region_id = customer.region_id;
       shippingData.region = customer.region;
       shippingData.postcode = customer.postcode;
+      shippingData.firstname = customer.firstname;
+      shippingData.lastname = customer.lastname;
+      shippingData.street = customer.street;
+      shippingData.telephone = customer.telephone;
       return shippingData;
     }
   }]);

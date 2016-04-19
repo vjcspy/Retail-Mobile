@@ -7,7 +7,7 @@ app.service('urlManagement', function () {
     pull_products: '/rest/v1/xretail/xproduct',
     customer_orders: '/rest/v1/xretail/customer-orders',
     load_block: '/rest/v1/xretail/loadblock',
-    create_order: '/rest/v1/xretail/customer-orders'
+    create_order: '/rest/v1/xretail/save-order'
   };
   this.getUrl = function (key) {
     return urls[key];

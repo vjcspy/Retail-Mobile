@@ -99,7 +99,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr ng-repeat="p in CreateOrderCtrl.model.cart">
+                  <tr ng-repeat="p in CreateOrderCtrl.model.cart" on-tap="removeItem(p.id)">
                     <td>{{p.name | izCutString:true:20}}</td>
                     <td>{{p.price}}</td>
                     <td>{{p.buyQty}}</td>
@@ -160,10 +160,11 @@
             <h3 class="panel-title"><i class="ion-closed-captioning"></i>&nbsp;Invoice</h3>
           </div>
           <div class="panel-body">
-            <div class="form-group">
+            <div class="form-group" ng-init="CreateOrderCtrl.model.paymentMethod='cash'">
               <label class="control-label" style="font-weight: normal">Payment method</label>
-              <select name="name" class="form-control">
-                <option value=""> -- Select One --</option>
+              <select ng-change="changePaymentMethod()" ng-model="CreateOrderCtrl.model.paymentMethod" class="form-control">
+                <option value="cash"> Cash Full</option>
+                <option value="partial"> Partial</option>
               </select>
             </div>
             <!--<div class="form-group" ng-init="CreateOrderCtrl.data.model.freeShip = true">-->
@@ -172,10 +173,12 @@
             <!--{{ CreateOrderCtrl.data.model.freeShip == true ? "YES" :"NO" }}-->
             <!--</md-switch>-->
             <!--</div>-->
-            <!--<div class="form-group" ng-show="CreateOrderCtrl.data.model.freeShip == false">-->
-            <!--<label class="control-label" style="font-weight: normal">Price</label>-->
-            <!--<input type="number" name="name" id="inputID" class="form-control input-color" value="" title="" required="required">-->
-            <!--</div>-->
+            <div class="form-group" ng-show="CreateOrderCtrl.model.paymentMethod == 'partial'">
+              <label class="control-label" style="font-weight: normal">Payment amount</label>
+              <input ng-model="CreateOrderCtrl.model.paymentAmount"
+                     ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }" type="number"
+                     class="form-control input-color" value="0" title="" required="required" ng-change="changePaymentAmount()">
+            </div>
           </div>
         </div>
       </div>
@@ -272,6 +275,19 @@
               <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label summary-order-label">Total Due </label>
               <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
                 <span class="pull-right summary-order">$200.000</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <button type="button" class="btn btn-default pull-left">
+                  <span class="ion-backspace-outline"></span> Cancel
+                </button>
+                <button type="button" class="btn btn-success pull-right md-raised md-primary" style="    margin-right: -30px;"
+                        on-tap="submitOrder()">
+                  <span class="ion-ios-compose"></span> Submit
+                </button>
               </div>
             </div>
           </div>
