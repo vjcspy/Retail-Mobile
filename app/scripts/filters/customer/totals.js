@@ -8,7 +8,8 @@ app.filter('orderTotals', function () {
     field = field || 'grand_total';
     var totals = 0;
     $.each(orders, function (k, v) {
-      console.log(v[field]);
+      if (typeof v == 'undefined')
+        return false;
       totals += parseFloat(v[field]);
     });
     return totals.toFixed(2);
