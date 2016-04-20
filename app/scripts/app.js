@@ -18,7 +18,8 @@ var app = angular.module('xretailApp',
     'toastr',
     'angular-loading-bar',
     'ui.select',
-    'xeditable'
+    'xeditable',
+    'ui.bootstrap'
   ])
   .config(
     ['$controllerProvider', '$compileProvider', '$filterProvider', '$provide',

@@ -78,7 +78,20 @@ app
             }
           }
         })
-
+        .state('app.view-orders', {
+          url: '/view-orders',
+          resolve: {
+            deps: load([
+              'scripts/controllers/order/view.js'
+            ]).deps
+          },
+          views: {
+            'menuContent': {
+              templateUrl: 'views/app/order/view.html',
+              controller: 'ViewOrderCtrl'
+            }
+          }
+        })
         .state('app.configuration', {
           url: '/configuration',
           abstract: true,

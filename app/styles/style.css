@@ -45,3 +45,22 @@
   font-size: inherit;
   font-weight: normal;
 }
+
+.view-order-select-page {
+  width: 100%;
+  /*background-color: lawngreen;*/
+}
+
+.view-order-select-page .md-select-icon {
+  display: none;
+}
+
+.view-order-select-page .md-text {
+  position: relative;
+  top: -5px;
+  color: #fafafa;
+}
+
+.md-text {
+  margin: auto;
+}
