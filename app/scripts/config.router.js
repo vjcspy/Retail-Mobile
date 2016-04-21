@@ -83,7 +83,19 @@ app
           resolve: {
             deps: load([
               'scripts/controllers/order/view.js'
-            ]).deps
+            ]).deps,
+            pullOrders: function ($http, urlManagement, appConfigData, $q) {
+              var defer = $q.defer();
+              appConfigData.getConfig('website_url').then(function (ok) {
+                var url = ok + urlManagement.getUrl('pull_orders') + "?searchCriteria[currentPage]=1&searchCriteria[pageSize]=10";
+                $http.get(url).then(function (res) {
+                  return defer.resolve(res.data);
+                }, function (rej) {
+                  return defer.reject(rej);
+                });
+              });
+              return defer.promise;
+            }
           },
           views: {
             'menuContent': {

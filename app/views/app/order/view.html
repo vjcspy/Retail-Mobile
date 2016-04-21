@@ -1,10 +1,11 @@
 <ion-view view-title="View Order">
   <div class="row">
     <ion-content>
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 10px">
-        <div class="panel panel-default">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 10px" ng-repeat="order in ViewOrderCtrl.data.orders">
+        <div class="panel"
+             ng-class="{'panel-success': order.state =='complete','panel-danger':order.state =='pending','panel-info':order.state =='processing'}">
           <div class="panel-heading">
-            <h3 class="panel-title">Order #123423321</h3>
+            <h3 class="panel-title">Order #{{order.entity_id}}</h3>
           </div>
           <div class="panel-body">
             <div ng-cloak>
@@ -15,65 +16,114 @@
                       <div class="form-group">
                         <label class="col-sm-2 control-label">First Name</label>
                         <div class="col-sm-10">
-                          Anh Nguyen
+                          {{order.customer_firstname}}
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-sm-2 control-label">First Name</label>
+                        <label class="col-sm-2 control-label">Last Name</label>
                         <div class="col-sm-10">
-                          Anh Nguyen
+                          {{order.customer_lastname}}
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-sm-2 control-label">First Name</label>
+                        <label class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
-                          Anh Nguyen
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-2 control-label">First Name</label>
-                        <div class="col-sm-10">
-                          Anh Nguyen
+                          {{order.customer_email}}
                         </div>
                       </div>
                     </md-content>
                   </md-tab>
                   <md-tab label="ITEMS">
                     <md-content class="md-padding">
-                      <h1 class="md-display-2">ITEMS</h1>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis
-                        vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis
-                        nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel
-                        tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies id
-                        a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate,
-                        euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor
-                        eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor
-                        vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
-                      <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere nec sapien
-                        sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis
-                        diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet nisl at, hendrerit tempor turpis.
-                        Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit amet, tempus
-                        sapien.</p>
-                      <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget
-                        congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci
-                        commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+                      <div class="panel panel-default" ng-repeat="item in order.items">
+                        <div class="panel-body">
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">#</label>
+                            <div class="col-sm-10">
+                              {{item.product_id}}
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                              {{item.name}}
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">Price</label>
+                            <div class="col-sm-10">
+                              {{item.price}}
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">Order-Invoiced-Shipped-Refunded</label>
+                            <div class="col-sm-10">
+                              {{item.qty_ordered}} - {{item.qty_invoiced}} - {{item.qty_shipped}} - {{item.qty_refunded}}
+                            </div>
+                          </div>
+                          <div class="form-group" ng-show="item.discount_amount > 0">
+                            <label class="col-sm-2 control-label">Discount amount</label>
+                            <div class="col-sm-10">
+                              {{item.discount_amount}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </md-content>
                   </md-tab>
                   <md-tab label="SUMMARY">
                     <md-content class="md-padding">
-                      <h1 class="md-display-2">SUMMARY</h1>
-                      <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget
-                        congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci
-                        commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+                      <div class="form-group row">
+                        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label summary-order-label">Subtotal</label>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                          <span class="pull-right text-success summary-order">{{order.subtotal}}</span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label summary-order-label">Discount</label>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                          <span class="pull-right text-danger summary-order">{{order.discount_amount}}</span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label summary-order-label">Tax</label>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                          <span class="pull-right text-danger summary-order">{{order.tax_amount}}</span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label summary-order-label">Shipping</label>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                          <span class="pull-right summary-order">{{order.shipping_amount}}</span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label summary-order-label">Grand Total</label>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                          <span class="pull-right summary-order">{{order.grand_total}}</span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label summary-order-label">Total Paid</label>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                          <span class="pull-right summary-order">{{order.total_paid || 0}}</span>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label summary-order-label">Total Due </label>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                          <span class="pull-right summary-order">{{order.total_due || 0}}</span>
+                        </div>
+                      </div>
                     </md-content>
                   </md-tab>
                 </md-tabs>
               </md-content>
             </div>
           </div>
-          <div class="panel-footer">
-            Footer
-          </div>
+          <!--<div class="panel-footer">-->
+            <!--Footer-->
+          <!--</div>-->
         </div>
       </div>
 
@@ -83,7 +133,7 @@
   <div class="bar bar-footer bar-dark">
     <button class="button button-clear pull-left"><i class="ion-chevron-left"></i></button>
     <div class="title view-order-select-page">
-      <md-select ng-model="ViewOrderCtrl.model.currentPage">
+      <md-select ng-model="ViewOrderCtrl.model.currentPage" ng-change="changePage()">
         <md-option ng-repeat="page in ViewOrderCtrl.data.pages" value="{{page.value}}">
           {{page.label}}
         </md-option>
