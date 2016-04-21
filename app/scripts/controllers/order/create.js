@@ -112,7 +112,9 @@ app.controller('CreateOrderCtrl', ['$scope', '$state', 'OrderService', 'productS
     $scope.CreateOrderCtrl.model.cart = OrderService.cart();
 
     $scope.submitOrder = function () {
+      $scope.showLoadingData();
       OrderService.loadBlock(true).then(function () {
+        OrderService.clearCart();
         $scope.hideLoadingData();
         $state.go('app.home');
       }, function () {

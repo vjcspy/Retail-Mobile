@@ -136,6 +136,18 @@ orders
         return defer.promise;
       };
 
+      this.clearCart = function () {
+        cart = [];
+        storeId = null;
+        customerData = null;
+        customerAdd = null;
+        shippingAmount = 0;
+        shippingMethod = 'xpos_shipping';
+        paymentMethod = 'xpayment_dummy1';
+        paymentAmount = 0;
+
+        totals = {};
+      }
     }])
   .service('OrderItemService', ['lodash', function (_) {
     this.getItems = function (cart) {
@@ -194,5 +206,6 @@ orders
       shippingData.street = customer.street;
       shippingData.telephone = customer.telephone;
       return shippingData;
-    }
+    };
+
   }]);
