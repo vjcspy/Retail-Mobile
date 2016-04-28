@@ -162,6 +162,7 @@ app
           resolve: {
             deps: load(['scripts/controllers/customer/create-update.js']).deps
           },
+          params: {customer: null, customerAdd: null},
           views: {
             'menuContent': {
               templateUrl: 'views/app/customer/create-update.html',

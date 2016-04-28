@@ -2,8 +2,8 @@
  * Created by vjcspy on 13/04/2016.
  */
 'use strict';
-app.controller('SearchCustomerCtrl', ['$scope', 'customerService', 'lodash', '$timeout', '$ionicPlatform', 'toastr',
-  function ($scope, customerService, _, $timeout, $ionicPlatform, toastr) {
+app.controller('SearchCustomerCtrl', ['$scope', 'customerService', 'lodash', '$timeout', '$ionicPlatform', 'toastr', '$state',
+  function ($scope, customerService, _, $timeout, $ionicPlatform, toastr, $state) {
 
     $scope.SearchCustomerCtrl = {};
     $scope.SearchCustomerCtrl.data = {};
@@ -43,6 +43,13 @@ app.controller('SearchCustomerCtrl', ['$scope', 'customerService', 'lodash', '$t
 
       }, 500);
 
+    };
+
+    $scope.editCustomer = function () {
+      $state.go('app.customer-create-update', {
+        customer: $scope.SearchCustomerCtrl.model.customer,
+        customerAdd: $scope.SearchCustomerCtrl.model.customerAdd
+      }, {reload: true});
     }
 
   }]);

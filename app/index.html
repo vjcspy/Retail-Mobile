@@ -7,19 +7,19 @@
 
   <!-- build:css styles/vendor.css -->
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css" />
-  <link rel="stylesheet" href="bower_components/waves/dist/waves.min.css" />
-  <link rel="stylesheet" href="bower_components/ionic-material/dist/ionic.material.css" />
-  <link rel="stylesheet" href="bower_components/ionic-material/dist/ionic.material.min.css" />
-  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-  <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
-  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
-  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
-  <link rel="stylesheet" href="bower_components/ui-select/dist/select.css" />
-  <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
-  <link rel="stylesheet" href="bower_components/fancybox-plus/css/jquery.fancybox-plus.css" />
-  <link rel="stylesheet" href="bower_components/Bootflat/bootflat/css/bootflat.css" />
-  <link rel="stylesheet" href="bower_components/Bootflat/bootflat/css/bootflat.min.css" />
+  <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css"/>
+  <link rel="stylesheet" href="bower_components/waves/dist/waves.min.css"/>
+  <link rel="stylesheet" href="bower_components/ionic-material/dist/ionic.material.css"/>
+  <link rel="stylesheet" href="bower_components/ionic-material/dist/ionic.material.min.css"/>
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+  <link rel="stylesheet" href="bower_components/animate.css/animate.css"/>
+  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css"/>
+  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css"/>
+  <link rel="stylesheet" href="bower_components/ui-select/dist/select.css"/>
+  <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css"/>
+  <link rel="stylesheet" href="bower_components/fancybox-plus/css/jquery.fancybox-plus.css"/>
+  <link rel="stylesheet" href="bower_components/Bootflat/bootflat/css/bootflat.css"/>
+  <link rel="stylesheet" href="bower_components/Bootflat/bootflat/css/bootflat.min.css"/>
   <!-- endbower -->
   <!-- endbuild -->
   <link href="styles/style.css" rel="stylesheet">
@@ -82,6 +82,7 @@
   <!-- build:js scripts/scripts.js -->
   <!--x-translate-->
   <script src="scripts/services/x-translate/iz-translate.js"></script>
+  <script src="bower_components/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
   <!--app-->
   <script src="scripts/app.js"></script>
   <script src="scripts/configuration.js"></script>
@@ -103,5 +104,10 @@
 </head>
 <body ng-app="xretailApp">
 <ion-nav-view></ion-nav-view>
+<script>
+  $(document).ready(function () {
+    $("html").niceScroll();
+  });
+</script>
 </body>
 </html>

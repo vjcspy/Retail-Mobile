@@ -1,4 +1,4 @@
-<ion-view view-title="New Customer">
+<ion-view view-title="Customer">
   <div class="row">
     <ion-content>
       <div ng-cloak>
@@ -10,11 +10,11 @@
                   <div class="panel-body">
                     <md-input-container class="md-block">
                       <label>First Name</label>
-                      <input ng-model="CreateUpdateCustomerCtrl.model.customer.firstname">
+                      <input ng-model="CreateUpdateCustomerCtrl.model.customer.first_name">
                     </md-input-container>
                     <md-input-container class="md-block">
                       <label>Last Name</label>
-                      <input ng-model="CreateUpdateCustomerCtrl.model.customer.lastname">
+                      <input ng-model="CreateUpdateCustomerCtrl.model.customer.last_name">
                     </md-input-container>
                     <md-input-container class="md-block">
                       <label>Email</label>
@@ -22,7 +22,7 @@
                     </md-input-container>
                     <md-input-container class="md-block" style="margin-right: 10px;margin-top: 0">
                       <label>Group</label>
-                      <md-select ng-model="CreateUpdateCustomerCtrl.model.customer.customerGroups">
+                      <md-select ng-model="CreateUpdateCustomerCtrl.model.customer.group_id">
                         <md-option ng-repeat="customerGroup in CreateUpdateCustomerCtrl.data.customerGroups"
                                    value="{{customerGroup.customer_group_id}}">
                           {{customerGroup.customer_group_code}}
@@ -68,7 +68,7 @@
                     </md-input-container>
                     <md-input-container style="margin-right: 10px;margin-top: 0">
                       <label>Country</label>
-                      <md-select ng-model="CreateUpdateCustomerCtrl.model.customerAdd.countryId">
+                      <md-select ng-model="CreateUpdateCustomerCtrl.model.customerAdd.country_id">
                         <md-option ng-repeat="country in CreateUpdateCustomerCtrl.data.countries" value="{{country.country_id}}">
                           {{country.name}}
                         </md-option>
