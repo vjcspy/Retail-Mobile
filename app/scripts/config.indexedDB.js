@@ -17,11 +17,15 @@ var izIndexedDB = angular.module('izIndexedDB', ['indexedDB'])
       .upgradeDatabase(3, function (event, db, tx) {
         db.createObjectStore('customers', {keyPath: 'id'});
         db.createObjectStore('products', {keyPath: 'id'});
+        db.createObjectStore('countries', {keyPath: 'country_id'});
         db.createObjectStore('pullData', {keyPath: 'pull_data_id'});
       })
       .upgradeDatabase(4, function (event, db, tx) {
         var objAppData = db.createObjectStore('retailAppData', {keyPath: 'retail_app_data_config_id'});
         objAppData.createIndex('name_idx', 'name', {unique: false});
         objAppData.createIndex('value_idx', 'value', {unique: false});
+      })
+      .upgradeDatabase(5, function (event, db, tx) {
+        db.createObjectStore('customerGroups', {keyPath: 'customer_group_id'});
       });
   });

@@ -11,6 +11,20 @@ app.service('customerService', ['$indexedDB', '$q', '$http', 'appConfigData', 'u
     });
     return defer.promise;
   };
+
+  this.addCustomer = function ($customerData) {
+    var defer = $q.defer();
+    $indexedDB.openStore('customers', function (store) {
+      store.upsert($customerData).then(function (e) {
+        // do something
+        return defer.resolve(true);
+      }, function (rej) {
+        return defer.reject(rej);
+      });
+    });
+    return defer.promise;
+  };
+
   this.getOrdersByCustomerId = function (id) {
     var defer = $q.defer();
     appConfigData.getConfig('website_url').then(function (websiteUrl) {

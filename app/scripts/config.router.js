@@ -157,6 +157,18 @@ app
             }
           }
         })
+        .state('app.customer-create-update', {
+          url: '/customer-create-update',
+          resolve: {
+            deps: load(['scripts/controllers/customer/create-update.js']).deps
+          },
+          views: {
+            'menuContent': {
+              templateUrl: 'views/app/customer/create-update.html',
+              controller: 'CreateUpdateCustomerCtrl'
+            }
+          }
+        })
         .state('app.product', {
           url: '/product',
           resolve: {

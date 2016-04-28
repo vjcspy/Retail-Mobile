@@ -1,0 +1,99 @@
+<ion-view view-title="New Customer">
+  <div class="row">
+    <ion-content>
+      <div ng-cloak>
+        <md-content>
+          <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Information">
+              <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                <div class="panel panel-default" style="margin-bottom: 0px">
+                  <div class="panel-body">
+                    <md-input-container class="md-block">
+                      <label>First Name</label>
+                      <input ng-model="CreateUpdateCustomerCtrl.model.customer.firstname">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                      <label>Last Name</label>
+                      <input ng-model="CreateUpdateCustomerCtrl.model.customer.lastname">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                      <label>Email</label>
+                      <input ng-model="CreateUpdateCustomerCtrl.model.customer.email">
+                    </md-input-container>
+                    <md-input-container class="md-block" style="margin-right: 10px;margin-top: 0">
+                      <label>Group</label>
+                      <md-select ng-model="CreateUpdateCustomerCtrl.model.customer.customerGroups">
+                        <md-option ng-repeat="customerGroup in CreateUpdateCustomerCtrl.data.customerGroups"
+                                   value="{{customerGroup.customer_group_id}}">
+                          {{customerGroup.customer_group_code}}
+                        </md-option>
+                      </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" style="margin-right: 10px;margin-top: 40px;">
+                      <label>Gender</label>
+                      <md-select ng-model="CreateUpdateCustomerCtrl.model.customer.gender">
+                        <md-option ng-repeat="gender in CreateUpdateCustomerCtrl.data.genders"
+                                   value="{{gender.id}}">
+                          {{gender.name}}
+                        </md-option>
+                      </md-select>
+                    </md-input-container>
+                  </div>
+                </div>
+              </md-content>
+            </md-tab>
+            <md-tab label="Addresses">
+              <md-content class="md-padding">
+                <div class="panel panel-default no-margin">
+                  <div class="panel-body">
+                    <!--<md-input-container class="md-block">-->
+                    <!--<label>First Name</label>-->
+                    <!--<input ng-model="user.title">-->
+                    <!--</md-input-container>-->
+                    <!--<md-input-container class="md-block">-->
+                    <!--<label>Middle Name</label>-->
+                    <!--<input ng-model="user.title">-->
+                    <!--</md-input-container>-->
+                    <!--<md-input-container class="md-block">-->
+                    <!--<label>Last Name</label>-->
+                    <!--<input ng-model="user.title">-->
+                    <!--</md-input-container>-->
+                    <md-input-container class="md-block">
+                      <label>Street</label>
+                      <input ng-model="CreateUpdateCustomerCtrl.model.customerAdd.street">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                      <label>City</label>
+                      <input ng-model="CreateUpdateCustomerCtrl.model.customerAdd.city">
+                    </md-input-container>
+                    <md-input-container style="margin-right: 10px;margin-top: 0">
+                      <label>Country</label>
+                      <md-select ng-model="CreateUpdateCustomerCtrl.model.customerAdd.countryId">
+                        <md-option ng-repeat="country in CreateUpdateCustomerCtrl.data.countries" value="{{country.country_id}}">
+                          {{country.name}}
+                        </md-option>
+                      </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                      <label>Telephone</label>
+                      <input name="postalCode" ng-model="CreateUpdateCustomerCtrl.model.customerAdd.telephone"
+                             required ng-pattern="/^[0-9]*$/" md-maxlength="15">
+                    </md-input-container>
+                  </div>
+                </div>
+              </md-content>
+            </md-tab>
+        </md-content>
+      </div>
+      <div class="panel panel-default" style="margin-left: 8px;margin-right: 8px">
+        <div class="panel-body" style="text-align: center">
+          <a class="btn-group">
+            <md-button class="md-raised md-primary" on-tap="save()">Save</md-button>
+            <md-button class="md-raised">Cancel</md-button>
+          </a>
+
+        </div>
+      </div>
+    </ion-content>
+  </div>
+</ion-view>

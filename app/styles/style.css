@@ -29,11 +29,11 @@
 }
 
 .panel-default > .panel-heading {
-  background: #fafafa none !important;
+  background: #FDFDFD none !important;
 }
 
 .panel-default > .panel-footer {
-  background: #fafafa none !important;
+  background: #FDFDFD none !important;
 }
 
 .summary-order {
@@ -63,4 +63,12 @@
 
 .md-text {
   margin: auto;
+}
+
+.md-tab span {
+  text-transform: none;
+}
+
+.no-margin {
+  margin: 0 !important;
 }

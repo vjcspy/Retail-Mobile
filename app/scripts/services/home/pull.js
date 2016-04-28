@@ -124,7 +124,19 @@ app.service('pullService', ['urlManagement', '$indexedDB', '$log', '$http', '$q'
         var customerDefer = $q.defer();
         pullDataByType('customers', customerDefer).then(function () {
           setPercentLoading('salesRule', {percent: 100});
-          setPercentLoading('anotherData', {percent: 100});
+
+          //Another data
+          setPercentLoading('anotherData', {percent: 10});
+
+          var countriesDefer = $q.defer();
+          pullDataByType('countries', countriesDefer).then(function () {
+            var customerGroupsDefer = $q.defer();
+            setPercentLoading('anotherData', {percent: 20});
+            pullDataByType('customerGroups', customerGroupsDefer).then(function () {
+              setPercentLoading('anotherData', {percent: 100});
+            });
+          });
+
         })
       });
     };
@@ -240,19 +252,17 @@ app.service('pullService', ['urlManagement', '$indexedDB', '$log', '$http', '$q'
             isPullFull: false,
             currentPage: page
           }).then(function () {
-            if (type == 'customers' || type == 'products') {
-              $indexedDB.openStore(type, function (c) {
-                c.upsert(res.data.items).then(function (e) {
-                  countDataIndexedByType(type).then(function (e) {
-                    return defer.resolve({res: res, totalSave: e});
-                  })
+            $indexedDB.openStore(type, function (c) {
+              c.upsert(res.data.items).then(function (e) {
+                countDataIndexedByType(type).then(function (e) {
+                  return defer.resolve({res: res, totalSave: e});
+                })
 
-                }, function (err) {
-                  toastr.error(err);
-                  return defer.reject(err);
-                });
+              }, function (err) {
+                toastr.error(err);
+                return defer.reject(err);
               });
-            }
+            });
           });
         } else {
           countDataIndexedByType(type).then(function (e) {
