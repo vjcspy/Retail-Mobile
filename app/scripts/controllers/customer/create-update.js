@@ -1,8 +1,8 @@
 /**
  * Created by vjcspy on 27/04/2016.
  */
-app.controller('CreateUpdateCustomerCtrl', ['$scope', '$state', 'urlManagement', 'toastr', '$http', 'appConfigData', '$indexedDB', 'customerService',
-  function ($scope, $state, urlManagement, toastr, $http, appConfigData, $indexedDB, customerService) {
+app.controller('CreateUpdateCustomerCtrl', ['$scope', '$state', 'urlManagement', 'toastr', '$http', 'appConfigData', '$indexedDB', 'customerService', '$timeout',
+  function ($scope, $state, urlManagement, toastr, $http, appConfigData, $indexedDB, customerService, $timeout) {
     // define data and model
     $scope.CreateUpdateCustomerCtrl = {
       data: {},
@@ -20,19 +20,25 @@ app.controller('CreateUpdateCustomerCtrl', ['$scope', '$state', 'urlManagement',
       $state.go('app.dashboard');
     };
 
-    $indexedDB.openStore('countries', function (store) {
-      store.getAll().then(function (data) {
-        $scope.CreateUpdateCustomerCtrl.data.countries = data;
-        $scope.CreateUpdateCustomerCtrl.model.customerAdd.countryId = 'VN';
-      })
-    });
 
-    $indexedDB.openStore('customerGroups', function (store) {
-      store.getAll().then(function (data) {
-        $scope.CreateUpdateCustomerCtrl.data.customerGroups = data;
-        $scope.CreateUpdateCustomerCtrl.model.customer.customerGroups = 1;
-      })
-    });
+    $timeout(function () {
+      $indexedDB.openStore('countries', function (store) {
+        store.getAll().then(function (data) {
+          $scope.CreateUpdateCustomerCtrl.data.countries = data;
+          $scope.CreateUpdateCustomerCtrl.model.customerAdd.countryId = 'VN';
+        })
+      });
+    }, 69);
+
+    $timeout(function () {
+      $indexedDB.openStore('customerGroups', function (store) {
+        store.getAll().then(function (data) {
+          $scope.CreateUpdateCustomerCtrl.data.customerGroups = data;
+          $scope.CreateUpdateCustomerCtrl.model.customer.customerGroups = 1;
+        })
+      });
+    }, 69);
+
 
     $scope.CreateUpdateCustomerCtrl.data.genders = [
       {id: 1, name: 'Male'},
