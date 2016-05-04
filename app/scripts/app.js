@@ -37,6 +37,15 @@ var app = angular.module('xretailApp',
     ])
   .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
+  }]).config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push(function () {
+      return {
+        'request': function (config) {
+          config.headers['Black-Hole'] = 'demo';
+          return config;
+        }
+      };
+    });
   }])
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
